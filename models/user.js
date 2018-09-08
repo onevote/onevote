@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
-    "User",
+    'User',
     {
       address: DataTypes.STRING,
       phone_number: DataTypes.STRING,
       candidates: DataTypes.JSONB
     },
     {
-      tableName: "users",
+      tableName: 'users',
       underscored: true
     }
   )
