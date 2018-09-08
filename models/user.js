@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     "User",
     {
       address: DataTypes.STRING,
-      phone_number: DataTypes.STRING
+      phone_number: DataTypes.STRING,
+      candidates: DataTypes.JSONB
     },
     {
       tableName: "users",
