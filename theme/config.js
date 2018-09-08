@@ -1,4 +1,3 @@
-import React from 'react'
 import { injectGlobal } from 'styled-components'
 import { theme as base } from '@hackclub/design-system'
 import palx from 'palx'
@@ -124,6 +123,6 @@ injectGlobal`
     left: 0;
     width: 100%;
     height: 2px;
-    background: black;
+    background: ${primary};
   }
 `
