@@ -1,3 +1,4 @@
+const axios = require('axios')
 const express = require('express')
 const next = require('next')
 
@@ -10,7 +11,16 @@ app.prepare().then(() => {
   const server = express()
 
   server.get('/locate', (req, res) => {
-    res.json({ message: 'hi there' })
+    address = req.query.address
+    axios
+      .get(
+        `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${
+          process.env.GOOGLE_CIVIC_API_KEY
+        }&address=${encodeURIComponent(address)}&electionId=2000`
+      )
+      .then(response => {
+        res.json(response.data)
+      })
   })
 
   server.get('*', (req, res) => handle(req, res))
