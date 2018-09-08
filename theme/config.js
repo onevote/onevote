@@ -19,7 +19,7 @@ export const brand = {
   accent: palette.red[5],
   brand: palette.violet[5],
   success: palette.teal[5],
-  info: palette.blue[5],
+  info: primary,
   warning: palette.orange[5],
   error: palette.red[7],
   muted: grays.silver,

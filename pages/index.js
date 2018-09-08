@@ -4,6 +4,7 @@ import Link from '../theme/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { Container, Box, Flex, Text, Heading } from '@hackclub/design-system'
+import SearchInput from '../components/searchInput'
 
 const Highlight = styled(Text.span)`
   border-radius: 1em 0 1em 0;
@@ -31,6 +32,9 @@ export default () => (
         <Text.span bold>Know who you’re voting for, then vote.</Text.span> We’re
         here to help.
       </Text>
+      <Box mt={[3, 4]}>
+        <SearchInput placeholder="1 Infinite Loop, Cupertino, CA" />
+      </Box>
     </Container>
     <Footer />
   </Fragment>
