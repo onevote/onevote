@@ -3,7 +3,7 @@ module.exports = {
     queryInterface.addColumn(
       'users',
       'candidates',
-      Sequelize.JSONB
+      Sequelize.ARRAY(Sequelize.JSONB)
     )
   },
   down: (queryInterface, Sequelize) => {
