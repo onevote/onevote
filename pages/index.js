@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Link from 'next/link'
+import Header from '../components/header'
+import Footer from '../components/footer'
 
 export default () => (
-  <main>
-    <h1>Hello!</h1>
-  </main>
+  <Fragment>
+    <Header />
+    <main>
+      <h1>Hello!</h1>
+    </main>
+    <Footer />
+  </Fragment>
 )

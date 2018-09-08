@@ -1,9 +1,6 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 import ThemeProvider from '../theme'
-
-import Header from '../components/header'
-import Footer from '../components/footer'
 import NProgress from 'nprogress'
 import { debounce } from 'lodash'
 import RouterEvents from '../lib/router-events'
@@ -64,9 +61,7 @@ export default class extends Document {
         </Head>
         <body>
           <ThemeProvider>
-            <Header />
             <Main />
-            <Footer />
           </ThemeProvider>
           <NextScript />
         </body>
