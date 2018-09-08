@@ -1,7 +1,7 @@
 export default () => (
   <footer>
     <div className="container">
-      <a href="https://lachlanjc.me" target="_blank">
+      <a href="https://pennapps-xviii.devpost.com" target="_blank">
         Made at PennApps XVIII
       </a>
       <a className="github" href="https://github.com/lachlanjc/onevote">
