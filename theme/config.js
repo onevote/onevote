@@ -101,14 +101,9 @@ injectGlobal`
   a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
-  html,
-  body {
-    background-color: #fff;
-    color: #000;
-  }
   ::selection {
-    background-color: #000;
-    color: #fff;
+    background-color: ${primary};
+    color: ${theme.colors.white};
   }
   .prevent-scroll {
     overflow: hidden;
