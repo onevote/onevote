@@ -2,7 +2,7 @@
   "name": "onevote",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node -r dotenv/config server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
