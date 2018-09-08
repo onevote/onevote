@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       address: DataTypes.STRING,
       phone_number: DataTypes.STRING,
-      candidates: DataTypes.JSONB
+      candidates: DataTypes.JSONB,
+      wants_notifications: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
     {
       tableName: 'users',
