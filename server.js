@@ -1,8 +1,7 @@
-require('dotenv').config()
-
 const axios = require('axios')
 const express = require('express')
 const next = require('next')
+const scrapeIt = require('scrape-it')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -13,16 +12,41 @@ app.prepare().then(() => {
   const server = express()
 
   server.get('/locate', (req, res) => {
-    address = req.query.address
-    axios
-      .get(
-        `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${
-          process.env.GOOGLE_CIVIC_API_KEY
-        }&address=${encodeURIComponent(address)}&electionId=2000`
-      )
-      .then(response => {
-        res.json(response.data)
+    const address = req.query.address
+    if (address && address !== '') {
+      axios
+        .get(
+          `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${
+            process.env.GOOGLE_CIVIC_API_KEY
+          }&address=${encodeURIComponent(address)}&electionId=${req.query
+            .electionId || 2000}`
+        )
+        .then(response => {
+          res.json(response.data)
+        })
+        .catch(error => {
+          res.status(500).json({ error: 'an error occurred' })
+        })
+    } else {
+      res.status(400).json({ error: 'no address specified' })
+    }
+  })
+
+  function buildUrl(vsId, firstName, lastName) {
+    const baseUrl = 'https://votesmart.org/candidate/political-courage-test/'
+    buildUrl = `${baseUrl}/${vsId}/${firstName}-${lastName}/`
+    return buildUrl
+  }
+
+  server.get('/position', (req, res) => {
+    const { name, state } = req.query
+    if (name && name !== '') {
+      scrapeIt(buildUrl, { data: 'h1' }).then(({ data, response }) => {
+        res.json(data)
       })
+    } else {
+      res.status(400).json({ error: 'no name specified' })
+    }
   })
 
   server.get('*', (req, res) => handle(req, res))
