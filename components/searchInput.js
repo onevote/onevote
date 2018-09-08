@@ -7,6 +7,7 @@ import { placeholder } from 'polished'
 
 const Relative = styled(Box)`
   position: relative;
+  flex: 1 1 auto;
 `
 
 const Absolute = styled(Flex)`
@@ -19,17 +20,18 @@ const Absolute = styled(Flex)`
 `
 
 const Search = styled(Input).attrs({
-  bg: 'info',
+  bg: 'brand',
   color: 'white',
   py: 2,
   pr: 3
 })`
+  background: ${theme.colors.brand} !important;
   padding-left: 56px; // 32px icon + padding
   line-height: 48px;
   max-width: 100%;
   border: 0;
   border-radius: ${theme.radii[2]};
-  ${placeholder({ color: theme.colors.blue[2] })};
+  ${placeholder({ color: 'rgba(255, 255, 255, 0.5)' })};
   font-size: ${theme.fontSizes[3]}px;
   box-shadow: ${theme.boxShadows[1]}, 0 12px 24px rgba(0, 0, 0, 0.0625);
   transition: ${theme.transition} box-shadow;
@@ -43,8 +45,8 @@ const Search = styled(Input).attrs({
 `
 
 const SearchInput = ({ value, placeholder, label, onChange, ...props }) => (
-  <Relative {...props}>
-    <Absolute color="blue.1" px={3}>
+  <Relative>
+    <Absolute color="rgba(255, 255, 255, 0.75)" px={3}>
       <Icon glyph="home" size={32} />
     </Absolute>
     <Search
@@ -53,6 +55,7 @@ const SearchInput = ({ value, placeholder, label, onChange, ...props }) => (
       onChange={onChange}
       type="search"
       aria-label={label}
+      {...props}
     />
   </Relative>
 )
