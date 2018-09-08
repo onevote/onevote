@@ -14,15 +14,23 @@ app.prepare().then(() => {
 
   server.get('/locate', (req, res) => {
     address = req.query.address
-    axios
-      .get(
-        `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${
-          process.env.GOOGLE_CIVIC_API_KEY
-        }&address=${encodeURIComponent(address)}&electionId=2000`
-      )
-      .then(response => {
-        res.json(response.data)
-      })
+    if (address && address !== '') {
+      axios
+        .get(
+          `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${
+            process.env.GOOGLE_CIVIC_API_KEY
+          }&address=${encodeURIComponent(address)}&electionId=${req.query
+            .electionId || 2000}`
+        )
+        .then(response => {
+          res.json(response.data)
+        })
+        .catch(error => {
+          res.status(500).json({ error: 'an error occurred' })
+        })
+    } else {
+      res.status(400).json({ error: 'no address specified' })
+    }
   })
 
   server.get('*', (req, res) => handle(req, res))
