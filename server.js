@@ -11,7 +11,7 @@ app.prepare().then(() => {
   const server = express()
 
   server.get('/locate', (req, res) => {
-    address = req.query.address
+    const address = req.query.address
     if (address && address !== '') {
       axios
         .get(
