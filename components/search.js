@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import PlacesAutocomplete from 'react-places-autocomplete'
 import styled from 'styled-components'
 import { trim, isEmpty, map, keys } from 'lodash'
 import axios from 'axios'
@@ -15,9 +16,8 @@ class Search extends Component {
     error: null
   }
 
-  handleChange = e => {
-    const address = trim(e.target.value)
-    this.setState({ address })
+  handleChange = value => {
+    this.setState({ address: value })
   }
 
   fetchData() {
@@ -52,18 +52,28 @@ class Search extends Component {
           Enter your home (U.S.) address
         </Label>
         <Searcher align="flex-end" width={1}>
-          <SearchInput
-            name="address"
-            id="address"
-            placeholder="1 Infinite Loop, Cupertino, CA"
-            onKeyDown={
-              e => {
-                if (e.which === 13) this.fetchData()
-              } /* submit on enter key press */
-            }
+          <PlacesAutocomplete
+            value={address}
             onChange={this.handleChange}
-            style={{ maxWidth: '100%' }}
-          />
+          >
+            {({ getInputProps, getSuggestionItemProps, suggestions, ...props }) => (
+              <Fragment>
+                <SearchInput
+                  name="address"
+                  id="address"
+                  placeholder="1 Infinite Loop, Cupertino, CA"
+                  onKeyDown={
+                    e => {
+                      if (e.which === 13) this.fetchData()
+                    } /* submit on enter key press */
+                  }
+                  onChange={this.handleChange}
+                  style={{ maxWidth: '100%' }}
+                  {...getInputProps({ ...props })}
+                />
+              </Fragment>
+            )}
+          </PlacesAutocomplete>
           <LargeButton
             ml={2}
             bg="info"
