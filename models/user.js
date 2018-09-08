@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       phone_number: DataTypes.STRING,
       candidates: DataTypes.ARRAY,
-      wants_notifications: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
+      subscribed_at: {
+        type: DataTypes.DATE,
+        defaultValue: null
       }
     },
     {
