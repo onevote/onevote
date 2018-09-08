@@ -1,6 +1,7 @@
 const axios = require('axios')
 const express = require('express')
 const next = require('next')
+const scrapeIt = require('scrape-it')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -28,6 +29,19 @@ app.prepare().then(() => {
         })
     } else {
       res.status(400).json({ error: 'no address specified' })
+    }
+  })
+
+  server.get('/position', (req, res) => {
+    const { name, state } = req.query
+    if (name && name !== '') {
+      scrapeIt('https://avascherocman.com', { data: 'h1' }).then(
+        ({ data, response }) => {
+          res.json(data)
+        }
+      )
+    } else {
+      res.status(400).json({ error: 'no name specified' })
     }
   })
 
