@@ -32,14 +32,18 @@ app.prepare().then(() => {
     }
   })
 
+  function buildUrl(vsId, firstName, lastName) {
+    const baseUrl = 'https://votesmart.org/candidate/political-courage-test/'
+    buildUrl = `${baseUrl}/${vsId}/${firstName}-${lastName}/`
+    return buildUrl
+  }
+
   server.get('/position', (req, res) => {
     const { name, state } = req.query
     if (name && name !== '') {
-      scrapeIt('https://avascherocman.com', { data: 'h1' }).then(
-        ({ data, response }) => {
-          res.json(data)
-        }
-      )
+      scrapeIt(buildUrl, { data: 'h1' }).then(({ data, response }) => {
+        res.json(data)
+      })
     } else {
       res.status(400).json({ error: 'no name specified' })
     }
