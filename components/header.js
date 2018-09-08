@@ -23,11 +23,11 @@ const twitterURL = (text, url) =>
 const facebookURL = url => `https://www.facebook.com/sharer/sharer.php?u=${url}`
 
 export default () => (
-  <Base justify="space-between" wrap width={1} maxWidth={48} px={3} py={4}>
+  <Base justify="space-between" wrap width={1} maxWidth={48} px={3} py={[3, 4]}>
     <Link color="black" href="/" prefetch fontSize={3} bold>
       OneVote
     </Link>
-    <div className="social">
+    <div>
       <Social href={twitterURL('OneVote', link)}>
         <Icon glyph="twitter" size={32} />
       </Social>
