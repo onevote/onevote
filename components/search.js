@@ -58,7 +58,7 @@ class Search extends Component {
             onChange={this.handleChange}
           >
             {({ getInputProps, getSuggestionItemProps, suggestions, ...props }) => (
-              <DropdownContainer>
+              <Box>
                 <SearchInput
                   name="address"
                   id="address"
@@ -71,17 +71,17 @@ class Search extends Component {
                   style={{ maxWidth: '100%' }}
                   {...getInputProps(props)}
                 />
-                <DropdownMenu>
+                <Box>
                   {suggestions.map(suggestion => (
-                    <DropdownMenuOption
+                    <Box
                       key={suggestion.id}
                       active={suggestion.active}
                       children={suggestion.description}
                       {...getSuggestionItemProps(suggestion)}
                     />
                   ))}
-                </DropdownMenu>
-              </DropdownContainer>
+                </Box>
+              </Box>
             )}
           </PlacesAutocomplete>
           <LargeButton
