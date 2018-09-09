@@ -92,24 +92,26 @@ class Search extends Component {
               suggestions,
               ...props
             }) => (
-              <Box width={1}>
+              <DropdownContainer width={1}>
                 <SearchInput
                   name="address"
                   id="address"
                   placeholder="1 Infinite Loop, Cupertino, CA"
                   {...getInputProps(props)}
                 />
-                <Box>
-                  {suggestions.map(suggestion => (
-                    <Box
-                      key={suggestion.id}
-                      active={suggestion.active}
-                      children={suggestion.description}
-                      {...getSuggestionItemProps(suggestion)}
-                    />
-                  ))}
-                </Box>
-              </Box>
+                {suggestions.length > 1 ? (
+                  <DropdownMenu>
+                    {suggestions.map(suggestion => (
+                      <DropdownMenuOption
+                        key={suggestion.id}
+                        active={suggestion.active}
+                        children={suggestion.description}
+                        {...getSuggestionItemProps(suggestion)}
+                      />
+                    ))}
+                  </DropdownMenu>
+                ) : null}
+              </DropdownContainer>
             )}
           </PlacesAutocomplete>
           <SearchButton

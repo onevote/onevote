@@ -24,6 +24,7 @@ export const brand = {
 brand.dem = brand.info
 brand.rep = brand.error
 brand.ind = brand.brand
+brand.non = brand.muted // nonpartisan
 brand.lib = brand.warning // libertarian
 brand.gre = brand.success // green
 brand.sap = brand.muted // sapient

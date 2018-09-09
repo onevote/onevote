@@ -16,7 +16,7 @@ const zoom = keyframes`
   }
 `
 
-const DropdownContainer = styled(Box)`
+export const DropdownContainer = styled(Box)`
   position: relative;
   // &:hover > div {
   //   animation: 0.1875s ease-out ${zoom};
@@ -25,7 +25,7 @@ const DropdownContainer = styled(Box)`
   // }
 `
 
-const DropdownMenu = styled(Card.withComponent(Flex))`
+export const DropdownMenu = styled(Card.withComponent(Flex))`
   align-items: stretch;
   background-color: ${theme.colors.white};
   box-shadow: ${theme.boxShadows[2]};
@@ -36,28 +36,23 @@ const DropdownMenu = styled(Card.withComponent(Flex))`
   overflow-y: auto;
   padding: ${theme.space[2]}px 0;
   position: absolute;
+  left: 0;
   right: 0;
   text-align: left;
   transform-origin: center top;
-  width: ${props => props.w || props.width || "256px"};
+  width: 100%;
   z-index: 4;
   -webkit-overflow-scrolling: touch;
 `
 
-const DropdownMenuOption = styled(Box)`
+export const DropdownMenuOption = styled(Box)`
   cursor: pointer;
   padding: ${theme.space[2]}px ${theme.space[3]}px;
   width: 100%;
-  ${props =>
-    props.active &&
-    css`
-      background-color: ${theme.colors.smoke};
-      font-weight: ${theme.bold};
-    `}
   &:hover {
-    background-color: ${theme.colors.blue[0]};
+    background: linear-gradient(to bottom, #1fb6ff, #009eeb);
+    color: ${theme.colors.white};
     transition: background-color ${theme.transition};
   }
+  ${props => props.active && css``};
 `
-
-export default { DropdownContainer, DropdownMenu, DropdownMenuOption }
