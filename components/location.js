@@ -25,6 +25,8 @@ const Location = ({ address }) => (
       </Box>
       <LargeButton
         bg="info"
+        target="_blank"
+        rel="noopener noreferral"
         href={`https://www.google.com/maps?q=${encodeURIComponent(address)}`}
       >
         Get Directions
