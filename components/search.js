@@ -11,6 +11,7 @@ import Icon from '@hackclub/icons'
 import Spinner from 'respin'
 import Location from './location'
 import Group from './profile/group'
+import PhoneSignup from './phoneSignup'
 
 const SearchButton = styled(Button.button).attrs({
   px: 0,
@@ -132,6 +133,7 @@ class Search extends Component {
               group.referendumTitle}`}
           />
         ))}
+        <PhoneSignup />
       </Box>
     )
   }
