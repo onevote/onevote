@@ -34,7 +34,7 @@ const Profile = ({ data, ...props }) => (
       <BadgeContainer>
         <Badge party={data.party} />
       </BadgeContainer>
-      {/* <Avi size={64} src={aviUrl(data.channels)} mr={3} /> */}
+      <Avi size={64} src={aviUrl(data.channels)} mr={3} />
       <Box align="left">
         <Heading.h4 fontSize={4} fontWeight="bold" children={data.name} />
         <Text color="muted" fontSize={2}>
