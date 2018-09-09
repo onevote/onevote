@@ -126,13 +126,14 @@ class Search extends Component {
             children={error}
           />
         )}
-        {contests.map(group => (
-          <Group
+        {contests.map(group => {
+          console.log(group)
+          return <Group
             profiles={group.candidates}
             label={group.office}
-            key={`group-${group.district.id}`}
+            key={`group-${group.district.id}-${group.office || group.referendumTitle}`}
           />
-        ))}
+        })}
       </Box>
     )
   }
