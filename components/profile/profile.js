@@ -5,6 +5,7 @@ import { Avatar, Heading, Text, Box, Flex } from '@hackclub/design-system'
 import Contact from './contact'
 import { get, find, lowerCase, random } from 'lodash'
 import getAvi from 'getavi'
+import axios from 'axios'
 
 const PARTIES = 'Republican' | 'Democrat' | 'Independent'
 const getYear = date => date.slice(0, 4)
@@ -15,6 +16,24 @@ const aviUrl = data =>
       'id'
     )
   )
+
+const getAviFromVS = name =>
+  axios
+    .get(`https://votesmart.org/x/search?s=${encodeURIComponent(name)}`)
+    .then(res => res.data)
+    .then(data => data.results[0].photo)
+    .catch(err => console.error(err))
+
+const getAvatar = data => {
+  const avatar = aviUrl(data.channels)
+  if (avatar) return avatar
+
+  getAviFromVS(data.name).then(image => {
+    if (image) return image
+  })
+
+  return 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1024px-Placeholder_no_text.svg.png'
+}
 
 const Base = styled(Box)`
   position: relative;
@@ -34,7 +53,7 @@ const Profile = ({ data, ...props }) => (
       <BadgeContainer>
         <Badge party={data.party} />
       </BadgeContainer>
-      <Avi size={64} src={aviUrl(data.channels)} mr={3} />
+      <Avi size={64} src={getAvatar(data)} mr={3} />
       <Box align="left" style={{ flex: '1 1 auto' }}>
         <Heading.h4 fontSize={4} fontWeight="bold" children={data.name} />
       </Box>
