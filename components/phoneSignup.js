@@ -1,15 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import {
-  Avatar,
-  Heading,
-  Text,
-  Box,
-  Field,
-  LargeButton
-} from '@hackclub/design-system'
-import Map from './map'
+import { Heading, Box, Field, LargeButton } from '@hackclub/design-system'
 
 const Base = styled(Box)`
   position: relative;
