@@ -30,19 +30,9 @@ const Item = ({ href, label, icon, ...props }) => (
 )
 
 const Twitter = ({ data }) => (
-  <Item
-    href={`https://twitter.com/${data}`}
-    label="Twitter"
-    icon="twitter"
-    color="#1da1f2"
-  />
+  <Item href={data} label="Twitter" icon="twitter" color="#1da1f2" />
 )
 
 const Facebook = ({ data }) => (
-  <Item
-    href={`https://facebook.com/${data}`}
-    label="Facebook"
-    icon="facebook"
-    color="#3b5998"
-  />
+  <Item href={data} label="Facebook" icon="facebook" color="#3b5998" />
 )
