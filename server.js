@@ -9,7 +9,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const electorFile = JSON.parse(fs.readFileSync('file', 'utf8'))
+const electorFile = JSON.parse(fs.readFileSync('data/electorData.json', 'utf8'))
 
 app.prepare().then(() => {
   const server = express()
@@ -35,14 +35,18 @@ app.prepare().then(() => {
     }
   })
 
-  //use google url redirect (done by lachlan) to get state and rep names and then add into url
   server.get('/positions', (req, res) => {
     const { name, state } = req.query
     const baseUrl = 'https://votesmart.org/candidate/political-courage-test/'
-    const vsUrl = `${baseUrl}/${vsId}/${name}/`
+    electorFile.forEach(element => {
+      if (`${element.first_name} ${element.last_name}` === name) {
+        const vsUrl = `${baseUrl}${element.votesmart_candidate_id}/${name}/`
+        res.json({ url: vsUrl })
+      }
+    })
 
     if (name && name !== '') {
-      scrapeIt(buildUrl, { data: 'tr .question-answer' }).then(
+      scrapeIt(vsUrl, { data: 'tr .question-answer' }).then(
         //use a list instead of regular data
         ({ data, response }) => {
           res.json(data)
