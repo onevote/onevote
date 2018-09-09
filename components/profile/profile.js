@@ -42,13 +42,10 @@ const Profile = ({ data, ...props }) => (
         </Text>
       </Box>
     </Flex>
-    {/* <Contact
-      phone={data.contact.phone}
-      callCount={random(4, 64)}
-      form={data.contact.form}
-      twitter={data.contact.twitter}
-      facebook={data.contact.facebook}
-    /> */}
+    <Contact
+      twitter={find(data.channels, ['type', 'Twitter'])}
+      facebook={find(data.channels, ['type', 'Facebook'])}
+    />
   </Base>
 )
 
