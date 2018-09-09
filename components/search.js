@@ -12,6 +12,7 @@ import Spinner from 'respin'
 import Location from './location'
 import Group from './profile/group'
 import PhoneSignup from './phoneSignup'
+import VoteSignup from './voteSignup'
 
 const SearchButton = styled(Button.button).attrs({
   px: 0,
@@ -137,6 +138,7 @@ class Search extends Component {
           />
         ))}
         <PhoneSignup />
+        <VoteSignup />
       </Box>
     )
   }
