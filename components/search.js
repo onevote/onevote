@@ -84,11 +84,13 @@ class Search extends Component {
           Enter your home (U.S.) address
         </Label>
         <Searcher align="flex-end" width={1}>
-          <PlacesAutocomplete
-            value={address}
-            onChange={this.handleChange}
-          >
-            {({ getInputProps, getSuggestionItemProps, suggestions, ...props }) => (
+          <PlacesAutocomplete value={address} onChange={this.handleChange}>
+            {({
+              getInputProps,
+              getSuggestionItemProps,
+              suggestions,
+              ...props
+            }) => (
               <Box>
                 <SearchInput
                   name="address"
