@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
-import Link from '../theme/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { Container, Box, Text, Heading } from '@hackclub/design-system'
 import Search from '../components/search'
-import Map from '../components/map'
 
 const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
 
@@ -29,7 +27,11 @@ export default class extends Component {
     return (
       <Fragment>
         <Head>
-          <script src={`https://maps.googleapis.com/maps/api/js?key=${this.props.googleMapsApiKey}&libraries=geometry,drawing,places`} />
+          <script
+            src={`https://maps.googleapis.com/maps/api/js?key=${
+              this.props.googleMapsApiKey
+            }&libraries=geometry,drawing,places`}
+          />
         </Head>
         <Header />
         <Container width={1} maxWidth={48} px={3} pb={4}>
@@ -37,22 +39,15 @@ export default class extends Component {
             Your vote counts. <Text.span bold>Cast it.</Text.span>
           </Heading.h1>
           <Text f={3} mt={2} mb={2}>
-            While young people are more informed and engaged than ever, we’re not
-            turning up at the polls.{' '}
+            While young people are more informed and engaged than ever, we’re
+            not turning up at the polls.{' '}
             <Highlight>Our votes are critical to the future we want.</Highlight>
           </Text>
           <Text f={3} mb={[3, 4]}>
-            <Text.span bold>Know who you’re voting for, then vote.</Text.span> We’re
-            here to help.
+            <Text.span bold>Know who you’re voting for, then vote.</Text.span>{' '}
+            We’re here to help.
           </Text>
           <Search />
-          {/* <Map
-            address="576 Natoma St., San Francisco, CA 94103"
-            markers={[
-              { address: 'San Diego, CA' },
-              { address: 'UPenn', label: 'PENNAPPS MY BOIS' }
-            ]}
-          /> */}
         </Container>
         <Footer />
       </Fragment>

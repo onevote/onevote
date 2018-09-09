@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
+import styled from 'styled-components'
+import theme from '../theme/config'
 import { Box, Card } from '@hackclub/design-system'
-import IconOnlyButton from './iconOnlyButton'
+import Icon from '@hackclub/icons'
 import { keyframes } from 'styled-components'
 import ScrollLock from 'react-scrolllock'
 
@@ -18,16 +20,17 @@ const modalKeyframes = keyframes`
   }
 `
 
-export const Modal = Card.extend`
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: ${({ theme }) => theme.boxShadows[2]};
+export const Modal = styled(Card)`
+  background: ${theme.colors.white};
+  border-radius: ${theme.radii[2]};
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.0625), 0 16px 32px rgba(0, 0, 0, 0.125) !important;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1100;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${theme.mediaQueries.md} {
     animation: ${modalKeyframes} ease-in 0.25s;
   }
 
@@ -35,8 +38,7 @@ export const Modal = Card.extend`
   width: ${props => props.w || props.width || '36rem'};
   max-width: 95vw;
   max-height: 95vh;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -47,9 +49,9 @@ export const Modal = Card.extend`
   }
 `
 
-export const Overlayer = Box.extend`
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.375);
+const Overlayer = Box.extend`
+  z-index: 1024;
+  background-color: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(6px);
 
   position: fixed;
@@ -66,6 +68,18 @@ export const Overlay = props => (
   </Fragment>
 )
 
+const ButtonReset = styled(Box.withComponent('button')).attrs({
+  role: 'button',
+  p: 3
+})`
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: ${({ theme }) => theme.pill};
+  cursor: pointer;
+`
 export const CloseButton = props => (
-  <IconOnlyButton glyph="close" color="muted" circle p={3} {...props} />
+  <ButtonReset aria-label="Close" color="muted" {...props}>
+    <Icon glyph="view-close-small" size={24} />
+  </ButtonReset>
 )

@@ -11,6 +11,7 @@ import Icon from '@hackclub/icons'
 import Spinner from 'respin'
 import Location from './location'
 import Group from './profile/group'
+import PhoneSignup from './phoneSignup'
 
 const SearchButton = styled(Button.button).attrs({
   px: 0,
@@ -91,25 +92,26 @@ class Search extends Component {
               suggestions,
               ...props
             }) => (
-              <Box>
+              <DropdownContainer width={1}>
                 <SearchInput
                   name="address"
                   id="address"
                   placeholder="1 Infinite Loop, Cupertino, CA"
-                  style={{ maxWidth: '100%' }}
                   {...getInputProps(props)}
                 />
-                <Box>
-                  {suggestions.map(suggestion => (
-                    <Box
-                      key={suggestion.id}
-                      active={suggestion.active}
-                      children={suggestion.description}
-                      {...getSuggestionItemProps(suggestion)}
-                    />
-                  ))}
-                </Box>
-              </Box>
+                {suggestions.length > 1 ? (
+                  <DropdownMenu>
+                    {suggestions.map(suggestion => (
+                      <DropdownMenuOption
+                        key={suggestion.id}
+                        active={suggestion.active}
+                        children={suggestion.description}
+                        {...getSuggestionItemProps(suggestion)}
+                      />
+                    ))}
+                  </DropdownMenu>
+                ) : null}
+              </DropdownContainer>
             )}
           </PlacesAutocomplete>
           <SearchButton
@@ -117,21 +119,10 @@ class Search extends Component {
             onClick={e => !isEmpty(trim(address)) && this.fetchData()}
           />
         </Searcher>
-        {error && (
-          <Text
-            color="error"
-            bold
-            fontSize={3}
-            py={3}
-            width={1}
-            center
-            children={error}
-          />
-        )}
         {pollingLocations
           ? pollingLocations.map(location => (
               <Location
-                address={location}
+                address={`${location.address.line1} ${location.address.city} ${location.address.state} ${location.address.zip}`}
                 key={`polling-${location.locationName}`}
               />
             ))
@@ -140,9 +131,11 @@ class Search extends Component {
           <Group
             profiles={group.candidates}
             label={group.office}
-            key={`group-${group.district.id}-${group.office || group.referendumTitle}`}
+            key={`group-${group.district.id}-${group.office ||
+              group.referendumTitle}`}
           />
         ))}
+        <PhoneSignup />
       </Box>
     )
   }
