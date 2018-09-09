@@ -1,12 +1,12 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.addColumn(
+    return queryInterface.addColumn(
       'users',
       'subscribed_at',
       Sequelize.DATE
     )
   },
   down: (queryInterface, Sequelize) => {
-    queryInterface.removeColumn('users', 'subscribed_at')
+    return queryInterface.removeColumn('users', 'subscribed_at')
   }
 }
