@@ -21,6 +21,7 @@ const modalKeyframes = keyframes`
 `
 
 export const Modal = styled(Card)`
+  background: ${theme.colors.white};
   border-radius: ${theme.radii[2]};
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.0625), 0 16px 32px rgba(0, 0, 0, 0.125) !important;
   position: fixed;
