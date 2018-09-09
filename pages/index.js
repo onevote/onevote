@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { Container, Box, Text, Heading } from '@hackclub/design-system'
+import { Container, Text, Heading } from '@hackclub/design-system'
 import Search from '../components/search'
 
 const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
@@ -24,6 +24,11 @@ export default class extends Component {
   }
 
   render() {
+    const pageDescription =
+      'Millennials and us Gen Z don’t show up to the polls. Know your candidates and get out to vote with OneVote.'
+    const pageTitle = 'OneVote'
+    const url = 'https://onevote-pennapps.herokuapp.com'
+    const imageUrl = '' // TODO
     return (
       <Fragment>
         <Head>
@@ -32,6 +37,25 @@ export default class extends Component {
               this.props.googleMapsApiKey
             }&libraries=geometry,drawing,places`}
           />
+          <title children={pageTitle} />
+          <html lang="en" />
+          <meta charSet="UTF-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <meta name="format-detection" content="telephone=no" />
+          <meta name="theme-color" content="#e42d42" />
+          <meta name="description" content={pageDescription} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:domain" content={url} />
+          <meta name="twitter:title" content={pageTitle} />
+          <meta name="twitter:description" content={pageDescription} />
+          <meta name="twitter:image" content={imageUrl} />
+          <meta property="og:site_name" content={pageTitle} />
+          <meta property="og:title" content={pageTitle} />
+          <meta property="og:description" content={pageDescription} />
+          <meta property="og:image" content={imageUrl} />
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={url} />
         </Head>
         <Header />
         <Container width={1} maxWidth={48} px={3} pb={4}>

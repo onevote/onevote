@@ -15,7 +15,7 @@ const Social = styled(Link).attrs({ ml: 3 })`
   }
 `
 
-const link = 'https://onevote.now.sh'
+const link = 'https://onevote-pennapps.herokuapp.com'
 const twitterURL = (text, url) =>
   `https://twitter.com/intent/tweet?text=${text
     .split(' ')
