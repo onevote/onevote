@@ -11,7 +11,7 @@ const Social = styled(Link).attrs({ ml: 3 })`
   color: ${theme.colors.muted};
   &:hover,
   &:focus {
-    color: ${theme.colors.primary};
+    color: ${theme.colors.brand};
   }
 `
 
@@ -24,7 +24,7 @@ const facebookURL = url => `https://www.facebook.com/sharer/sharer.php?u=${url}`
 
 export default () => (
   <Base justify="space-between" wrap width={1} maxWidth={48} px={3} py={[3, 4]}>
-    <Link color="black" href="/" prefetch fontSize={3} bold>
+    <Link color={theme.colors.brand} href="/" prefetch fontSize={3} bold>
       OneVote
     </Link>
     <div>

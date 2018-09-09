@@ -1,13 +1,40 @@
 import React, { Component } from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import styled from 'styled-components'
+import theme from '../theme/config'
 import { trim, isEmpty, map, keys } from 'lodash'
 import axios from 'axios'
-import { Box, LargeButton, Flex, Label, Text } from '@hackclub/design-system'
 import { DropdownContainer, DropdownMenu, DropdownMenuOption } from './dropdown'
 import SearchInput from './searchInput'
+import { Box, Button, Flex, Label, Text } from '@hackclub/design-system'
+import Icon from '@hackclub/icons'
 import Group from './profile/group'
 import Spinner from 'respin'
+
+const SearchButton = styled(Button.button).attrs({
+  px: 0,
+  py: 0,
+  ml: 3,
+  children: props =>
+    props.loading ? <Spinner /> : <Icon glyph="search" size={48} />
+})`
+  flex-shrink: 0;
+  line-height: 0 !important;
+  background: ${theme.colors.white};
+  color: ${theme.colors.brand};
+  border-radius: 32px;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: ${theme.transition} box-shadow;
+  &:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.125), 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+  &:active {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+`
 
 class Search extends Component {
   state = {
@@ -81,10 +108,9 @@ class Search extends Component {
               </Box>
             )}
           </PlacesAutocomplete>
-          <LargeButton
-            ml={2}
-            bg="info"
-            children={loading ? <Spinner /> : 'Search'}
+          <SearchButton
+            glyph="search"
+            circle
             onClick={e => !isEmpty(trim(address)) && this.fetchData()}
           />
         </Searcher>
