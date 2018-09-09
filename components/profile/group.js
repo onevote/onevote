@@ -25,9 +25,8 @@ const Group = ({ profiles, label, children }) =>
         <Heading.h2
           caps
           fontSize={2}
-          color={theme.colors.slate}
-          mr={[null, 2]}
-          // style={{ fontWeight: 'bold' }}
+          color={theme.colors.muted}
+          style={{ fontWeight: 'bold' }}
           children={label}
         />
         <GroupInfo groupName={label} />

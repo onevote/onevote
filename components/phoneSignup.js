@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import { Avatar, Heading, Text, Box, Flex } from '@hackclub/design-system'
-import Map from './map'
+import { Heading, Box, Field, LargeButton } from '@hackclub/design-system'
 
 const Base = styled(Box)`
   position: relative;
@@ -18,8 +17,18 @@ Base.defaultProps = {
 
 const Location = ({ address }) => (
   <Base my={4}>
-    <Heading.h2 mb={2}>Your polling location</Heading.h2>
-    <Map address={address} />
+    <Heading.h2 mb={2} style={{ fontWeight: 'bold' }}>
+      Get reminded before the election
+    </Heading.h2>
+    <form>
+      <Field
+        label="Your phone number"
+        placeholder="(123) 456-789"
+        name="phone"
+        mb={3}
+      />
+      <LargeButton bg={theme.colors.brand}>Sign up</LargeButton>
+    </form>
   </Base>
 )
 

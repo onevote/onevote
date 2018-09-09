@@ -4,7 +4,11 @@
   "scripts": {
     "dev": "node -r dotenv/config server.js",
     "build": "next build",
-    "start": "NODE_ENV=production npx sequelize db:migrate && node server.js"
+    "start": "next build && node server.js"
+  },
+  "engines": {
+    "node": "*",
+    "npm": "*"
   },
   "license": "MIT",
   "dependencies": {

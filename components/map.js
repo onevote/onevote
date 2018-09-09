@@ -14,8 +14,17 @@ class InnerMap extends Component {
       .then(position => {
         this.setState({ position })
       })
-      .then(() => Promise.all(this.props.markers.map(marker => geocodeByAddress(marker.address))))
-      .then(results => results.map((result, index) => ({ ...this.props.markers[index], data: result[0] || null })))
+      .then(() =>
+        Promise.all(
+          this.props.markers.map(marker => geocodeByAddress(marker.address))
+        )
+      )
+      .then(results =>
+        results.map((result, index) => ({
+          ...this.props.markers[index],
+          data: result[0] || null
+        }))
+      )
       .then(results => {
         this.setState({ markers: results })
       })
@@ -27,7 +36,10 @@ class InnerMap extends Component {
       <GoogleMap center={position} zoom={12}>
         <Marker position={position} />
         {markers.map(marker => (
-          <Marker label={marker.label || ''} position={marker.data.geometry.location} />
+          <Marker
+            label={marker.label || ''}
+            position={marker.data.geometry.location}
+          />
         ))}
       </GoogleMap>
     )
@@ -38,9 +50,9 @@ const Map = withGoogleMap(InnerMap)
 
 // TODO: Change
 Map.defaultProps = {
-  containerElement: <div style={{ height: '500px', width: '100%' }} />,
-  loadingElement: <div style={{ height: '500px', width: '100%' }} />,
-  mapElement: <div style={{ height: '500px', width: '100%' }} />,
+  containerElement: <div style={{ height: '256px', width: '100%' }} />,
+  loadingElement: <div style={{ height: '256px', width: '100%' }} />,
+  mapElement: <div style={{ height: '256px', width: '100%' }} />,
   markers: []
 }
 

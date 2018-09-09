@@ -1,3 +1,18 @@
-{
-  "Governor": "A governor is, in most cases, a public official with the power to govern the executive branch of a non-sovereign or sub-national level of government, ranking under the head of state. In federations, governor may be the title of a politician who governs a constituent state and may be either appointed or elected. The power of the individual governor can vary dramatically between political systems, with some governors having only nominal or largely ceremonial power, while others having a complete control over the entire government."
-}
+[
+  {
+    "Governor": "In the United States, a governor serves as the chief executive officer and commander-in-chief in each of the fifty states and in the five permanently inhabited territories, functioning as both head of state and head of government therein. As such, governors are responsible for implementing state laws and overseeing the operation of the state executive branch. As state leaders, governors advance and pursue new and revised policies and programs using a variety of tools, among them executive orders, executive budgets, and legislative proposals and vetoes."
+  },
+
+  {
+    "Lieutenant-Governor": "All but five states (Arizona, Maine, New Hampshire, Oregon, and Wyoming) have a lieutenant governor. The lieutenant governor succeeds to the gubernatorial office (the powers and duties but not the office, in Massachusetts and West Virginia), if vacated by the removal from office, death, or resignation of the previous governor. Lieutenant governors also serve as unofficial acting state governors in case the incumbent governors are unable to fulfill their duties, and they often serve as presiding officers of the upper houses of state legislatures."
+  },
+  {
+    "Senator": "A senator is a member of the U.S. Senate. The Constitution prescribes that the Senate be composed of two Senators from each State (therefore, the Senate currently has 100 Members) and that a Senator must be at least thirty years of age, have been a citizen of the United States for nine years, and, when elected, be a resident of the State from which he or she is chosen. A Senator's term of office is six years and approximately one-third of the total membership of the Senate is elected every two years."
+  },
+  {
+    "Representative": "A representative is a member of the U.S. House of Representatives. Each representative is elected to a two-year term serving the people of a specific congressional district. Among other duties, representatives introduce bills and resolutions, offer amendments and serve on committees. The number of representatives with full voting rights is 435, a number set by Public Law 62-5 on August 8, 1911, and in effect since 1913."
+  },
+  {
+    "Secretary of State": "In states that have one, the secretary of state is the chief clerk of the state, and is often the primary custodian of important state records. In the states of Alaska, Hawaii, and Utah, there is no secretary of state; in those states many duties that a secretary of state might normally execute fall within the domain of the lieutenant governor. Like the lieutenant governor, in most states the secretary of state is in the line of succession to succeed the governor, in most cases immediately behind the lieutenant governor. In three states with no lieutenant governor (Arizona,[1] Oregon and Wyoming) as well as the U.S. territory of Puerto Rico, the secretary of state is first in the line of succession in the event of a gubernatorial vacancy."
+  }
+]

@@ -11,6 +11,7 @@ import Icon from '@hackclub/icons'
 import Spinner from 'respin'
 import Location from './location'
 import Group from './profile/group'
+import PhoneSignup from './phoneSignup'
 
 const SearchButton = styled(Button.button).attrs({
   px: 0,
@@ -91,24 +92,26 @@ class Search extends Component {
               suggestions,
               ...props
             }) => (
-              <Box width={1}>
+              <DropdownContainer width={1}>
                 <SearchInput
                   name="address"
                   id="address"
                   placeholder="1 Infinite Loop, Cupertino, CA"
                   {...getInputProps(props)}
                 />
-                <Box>
-                  {suggestions.map(suggestion => (
-                    <Box
-                      key={suggestion.id}
-                      active={suggestion.active}
-                      children={suggestion.description}
-                      {...getSuggestionItemProps(suggestion)}
-                    />
-                  ))}
-                </Box>
-              </Box>
+                {suggestions.length > 1 ? (
+                  <DropdownMenu>
+                    {suggestions.map(suggestion => (
+                      <DropdownMenuOption
+                        key={suggestion.id}
+                        active={suggestion.active}
+                        children={suggestion.description}
+                        {...getSuggestionItemProps(suggestion)}
+                      />
+                    ))}
+                  </DropdownMenu>
+                ) : null}
+              </DropdownContainer>
             )}
           </PlacesAutocomplete>
           <SearchButton
@@ -119,7 +122,7 @@ class Search extends Component {
         {pollingLocations
           ? pollingLocations.map(location => (
               <Location
-                address={location}
+                address={`${location.address.line1} ${location.address.city} ${location.address.state} ${location.address.zip}`}
                 key={`polling-${location.locationName}`}
               />
             ))
@@ -132,6 +135,7 @@ class Search extends Component {
               group.referendumTitle}`}
           />
         ))}
+        <PhoneSignup />
       </Box>
     )
   }

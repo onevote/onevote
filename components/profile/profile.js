@@ -56,9 +56,6 @@ const Profile = ({ data, ...props }) => (
       <Avi size={64} src={getAvatar(data)} mr={3} />
       <Box align="left" style={{ flex: '1 1 auto' }}>
         <Heading.h4 fontSize={4} fontWeight="bold" children={data.name} />
-        <Text color="muted" fontSize={2}>
-          hi
-        </Text>
       </Box>
       <Contact
         twitter={find(data.channels, ['type', 'Twitter'])}
