@@ -30,6 +30,10 @@ app.prepare().then(() => {
               contest.candidates,
               n => n.name
             )
+            data.contests[i].candidates = _.filter(
+              contest.candidates,
+              n => !_.startsWith(_.lowerCase(n.name), 'supreme court')
+            )
           })
           return data
         })

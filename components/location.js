@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import { Heading, Box, LargeButton, Flex } from '@hackclub/design-system'
+import { Heading, Box, LargeButton, Flex, Text } from '@hackclub/design-system'
 import Map from './map'
 
 const Base = styled(Box)`
@@ -18,8 +18,11 @@ Base.defaultProps = {
 
 const Location = ({ address }) => (
   <Base my={4}>
-    <Flex mb={2} justify="space-between" wrap>
-      <Heading.h2>Your polling location</Heading.h2>
+    <Flex justify="space-between" wrap mb={2} align="flex-start">
+      <Box>
+        <Heading.h2>Your polling location</Heading.h2>
+        <Text>{address}</Text>
+      </Box>
       <LargeButton
         bg="info"
         href={`https://www.google.com/maps?q=${encodeURIComponent(address)}`}
