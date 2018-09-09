@@ -14,6 +14,15 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true
     }
   )
-
+  Candidate.associate = models => {
+    Candidate.belongsToMany(models.User, {
+      through: models.CandidateSelection,
+      foreignKey: {
+        name: 'candidate_id',
+        allowNull: false
+      },
+      as: 'candidates'
+    })
+  }
   return Candidate
 }
