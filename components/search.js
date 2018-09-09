@@ -18,7 +18,9 @@ class Search extends Component {
   }
 
   handleChange = value => {
-    this.setState({ address: value })
+    this.setState({ address: value }, () => {
+      this.fetchData()
+    })
   }
 
   fetchData() {
@@ -63,11 +65,6 @@ class Search extends Component {
                   name="address"
                   id="address"
                   placeholder="1 Infinite Loop, Cupertino, CA"
-                  onKeyDown={
-                    e => {
-                      if (e.which === 13) this.fetchData()
-                    } // submit on enter key press
-                  }
                   style={{ maxWidth: '100%' }}
                   {...getInputProps(props)}
                 />
