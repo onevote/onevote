@@ -13,7 +13,7 @@ const Group = ({ profiles, label, children }) =>
           caps
           regular
           fontSize={2}
-          color={theme.colors.slate}
+          color={theme.colors.muted}
           children={label}
         />
         <GroupInfo groupName={label} />

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme/config'
-import { Card, Avatar, Heading, Text, Box, Flex } from '@hackclub/design-system'
+import { Avatar, Heading, Text, Box, Flex } from '@hackclub/design-system'
 import Contact from './contact'
 import { get, find, lowerCase, random } from 'lodash'
 import getAvi from 'getavi'
@@ -16,13 +16,25 @@ const aviUrl = data =>
     )
   )
 
+const Base = styled(Box)`
+  position: relative;
+  overflow: hidden;
+  border-radius: ${theme.radii[2]};
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.0625);
+`
+Base.defaultProps = {
+  bg: 'white',
+  p: [3, 4],
+  mx: [-3, -4]
+}
+
 const Profile = ({ data, ...props }) => (
-  <Card bg="white" p={[3, 4]} mx={[-3, -4]} boxShadowSize="md" {...props}>
+  <Base {...props}>
     <Flex align="center" style={{ position: 'relative' }}>
       <BadgeContainer>
         <Badge party={data.party} />
       </BadgeContainer>
-      <Avi size={64} src={aviUrl(data.channels)} mr={3} />
+      {/* <Avi size={64} src={aviUrl(data.channels)} mr={3} /> */}
       <Box align="left">
         <Heading.h4 fontSize={4} fontWeight="bold" children={data.name} />
         <Text color="muted" fontSize={2}>
@@ -37,7 +49,7 @@ const Profile = ({ data, ...props }) => (
       twitter={data.contact.twitter}
       facebook={data.contact.facebook}
     /> */}
-  </Card>
+  </Base>
 )
 
 const Avi = styled(Avatar)`
