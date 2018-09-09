@@ -18,7 +18,7 @@ export default class GroupInfo extends Component {
       <>
         {groupDescriptions[groupName] && (
           <>
-            <Link onClick={this.toggleDisplay}>What does this mean?</Link>
+            <Link onClick={this.toggleDisplay} style={{ cursor: 'pointer' }}>What does this mean?</Link>
             {this.state.active && (
               <>
                 <Modal align="left" p={[3, 4]}>
