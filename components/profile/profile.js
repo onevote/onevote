@@ -80,6 +80,7 @@ const Badge = ({ party, ...props }) => {
       bg={theme.colors[lowerCase(party).slice(0, 3)]}
       color="white"
       fontSize={1}
+      title={party}
       {...props}
       children={party.slice(0, 1)}
     />
