@@ -24,7 +24,9 @@ export const brand = {
 brand.dem = brand.info
 brand.rep = brand.error
 brand.ind = brand.brand
-brand.lib = brand.warning
+brand.lib = brand.warning // libertarian
+brand.gre = brand.success // green
+brand.sap = brand.muted // sapient
 
 // NOTE(@lachlanjc): fix for DS inputs
 brand.blue = ['#009EEB', '#1FB6FF', '#85D7FF']

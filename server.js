@@ -2,6 +2,7 @@ const axios = require('axios')
 const express = require('express')
 const next = require('next')
 const scrapeIt = require('scrape-it')
+const fs = require('fs')
 const _ = require('lodash')
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -22,9 +23,17 @@ app.prepare().then(() => {
           }&address=${encodeURIComponent(address)}&electionId=${req.query
             .electionId || 2000}`
         )
-        .then(response => {
-          res.json(response.data)
+        .then(res => res.data)
+        .then(data => {
+          _.map(data.contests, (contest, i) => {
+            data.contests[i].candidates = _.uniqBy(
+              contest.candidates,
+              n => n.name
+            )
+          })
+          return data
         })
+        .then(data => res.json(data))
         .catch(error => {
           res.status(500).json({ error: 'an error occurred' })
         })
@@ -50,13 +59,18 @@ app.prepare().then(() => {
             const vsUrl = `${baseUrl}${
               element.votesmart_candidate_id
             }/${_.kebabCase(element.name)}`
-            /*scrapeIt(vsUrl, {
-              title: '.span-12 b',
-              desc: '.span-3'
+            scrapeIt(vsUrl, {
+              questions: {
+                listItem: 'tr.question-answer',
+                data: {
+                  response: 'td.span-3',
+                  question: '.span-3'
+                }
+              }
             }).then(({ data, response }) => {
               console.log(`Status Code: ${response.statusCode}`)
               console.log(data)
-            })*/
+            })
           }
         })
       })

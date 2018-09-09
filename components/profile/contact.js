@@ -9,7 +9,7 @@ const Base = styled(Flex)`
 `
 
 const Contact = ({ twitter, facebook, ...props }) => (
-  <Base mt={3} mx={[-1, -2]} align="center" {...props}>
+  <Base align="center" {...props}>
     {twitter && <Twitter data={twitter.id} />}
     {facebook && <Facebook data={facebook.id} />}
   </Base>
@@ -25,7 +25,7 @@ const ItemLink = styled(Link).attrs({ mx: [1, 2] })`
 
 const Item = ({ href, label, icon, ...props }) => (
   <ItemLink href={href} target="_blank" title={label} {...props}>
-    <Icon glyph={icon} size={36} />
+    <Icon glyph={icon} size={32} />
   </ItemLink>
 )
 
