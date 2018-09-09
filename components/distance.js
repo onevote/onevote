@@ -32,14 +32,14 @@ export default class extends Component {
       return
     }
     geocodeByAddress(this.props.to)
-    .then(results => getLatLng(results[0]))
-    .then(position => {
-      this.setState({ to: position })
-      geolocation.getCurrentPosition(pos => {
-        const { latitude, longitude } = pos.coords
-        this.setState({ from: { lat: latitude, lng: longitude } })
+      .then(results => getLatLng(results[0]))
+      .then(position => {
+        this.setState({ to: position })
+        geolocation.getCurrentPosition(pos => {
+          const { latitude, longitude } = pos.coords
+          this.setState({ from: { lat: latitude, lng: longitude } })
+        })
       })
-    })
   }
 
   render() {
