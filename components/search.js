@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import { trim, isEmpty, map, keys } from 'lodash'
+import { trim, isEmpty, map, keys, debounce } from 'lodash'
 import axios from 'axios'
 import { DropdownContainer, DropdownMenu, DropdownMenuOption } from './dropdown'
 import SearchInput from './searchInput'
@@ -46,9 +46,11 @@ class Search extends Component {
 
   handleChange = value => {
     this.setState({ address: value }, () => {
-      this.fetchData()
+      this.debounceFetchData()
     })
   }
+
+  debounceFetchData = debounce(this.fetchData, 250)
 
   fetchData() {
     const { address } = this.state
