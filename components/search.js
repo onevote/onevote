@@ -91,12 +91,11 @@ class Search extends Component {
               suggestions,
               ...props
             }) => (
-              <Box>
+              <Box width={1}>
                 <SearchInput
                   name="address"
                   id="address"
                   placeholder="1 Infinite Loop, Cupertino, CA"
-                  style={{ maxWidth: '100%' }}
                   {...getInputProps(props)}
                 />
                 <Box>
@@ -140,7 +139,8 @@ class Search extends Component {
           <Group
             profiles={group.candidates}
             label={group.office}
-            key={`group-${group.district.id}-${group.office || group.referendumTitle}`}
+            key={`group-${group.district.id}-${group.office ||
+              group.referendumTitle}`}
           />
         ))}
       </Box>
