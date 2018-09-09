@@ -4,6 +4,10 @@ import ThemeProvider from '../theme'
 import NProgress from 'nprogress'
 import { debounce } from 'lodash'
 import RouterEvents from '../lib/router-events'
+import { Provider } from 'unstated'
+import AppContainer from '../lib/state'
+
+const app = new AppContainer()
 
 const start = debounce(NProgress.start, 200)
 RouterEvents.on('routeChangeStart', start)
@@ -61,7 +65,9 @@ export default class extends Document {
         </Head>
         <body>
           <ThemeProvider>
-            <Main />
+            <Provider inject={[app]}>
+              <Main />
+            </Provider>
           </ThemeProvider>
           <NextScript />
         </body>
