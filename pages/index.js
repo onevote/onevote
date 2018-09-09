@@ -6,6 +6,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import { Container, Box, Text, Heading } from '@hackclub/design-system'
 import Search from '../components/search'
+import Map from '../components/map'
 
 const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
 
@@ -28,7 +29,7 @@ export default class extends Component {
     return (
       <Fragment>
         <Head>
-          <script src={`https://maps.googleapis.com/maps/api/js?key=${this.props.googleMapsApiKey}&libraries=places`} />
+          <script src={`https://maps.googleapis.com/maps/api/js?key=${this.props.googleMapsApiKey}&libraries=geometry,drawing,places`} />
         </Head>
         <Header />
         <Container width={1} maxWidth={48} px={3} pb={4}>
@@ -45,6 +46,13 @@ export default class extends Component {
             here to help.
           </Text>
           <Search />
+          {/* <Map
+            address="576 Natoma St., San Francisco, CA 94103"
+            markers={[
+              { address: 'San Diego, CA' },
+              { address: 'UPenn', label: 'PENNAPPS MY BOIS' }
+            ]}
+          /> */}
         </Container>
         <Footer />
       </Fragment>
