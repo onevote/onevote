@@ -43,16 +43,17 @@ app.prepare().then(() => {
   })
 
   server.get('/positions', (req, res) => {
-    const { rep, state } = req.query
-    if (!name || name === '' || !rep || rep === '') {
+    const { name, state } = req.query
+    if (_.isEmpty(name) || _.isEmpty(state)) {
       res
         .status(400)
-        .json({ error: 'invalid parameters, name and rep are required.' })
+        .json({ error: 'invalid parameters, name and state are required' })
     }
     axios
-      .get(`https://votesmart.org/x/search?s=${encodeURIComponent(rep)}`)
-      .then(response => {
-        response.data.results.forEach(element => {
+      .get(`https://votesmart.org/x/search?s=${encodeURIComponent(name)}`)
+      .then(vs => vs.data)
+      .then(vs => {
+        vs.results.forEach(element => {
           if (state === element.state_id && element.incumbent !== true) {
             const baseUrl =
               'https://votesmart.org/candidate/political-courage-test/'
@@ -61,10 +62,10 @@ app.prepare().then(() => {
             }/${_.kebabCase(element.name)}`
             scrapeIt(vsUrl, {
               questions: {
-                listItem: 'tr.question-answer',
+                listItem: 'table.pct-q-a tr',
                 data: {
                   response: 'td.span-3',
-                  question: '.span-3'
+                  question: '.span-12'
                 }
               }
             }).then(({ data, response }) => {
