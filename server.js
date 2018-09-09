@@ -59,13 +59,18 @@ app.prepare().then(() => {
             const vsUrl = `${baseUrl}${
               element.votesmart_candidate_id
             }/${_.kebabCase(element.name)}`
-            /*scrapeIt(vsUrl, {
-              title: '.span-12 b',
-              desc: '.span-3'
+            scrapeIt(vsUrl, {
+              questions: {
+                listItem: 'tr.question-answer',
+                data: {
+                  response: 'td.span-3',
+                  question: '.span-3'
+                }
+              }
             }).then(({ data, response }) => {
               console.log(`Status Code: ${response.statusCode}`)
               console.log(data)
-            })*/
+            })
           }
         })
       })
