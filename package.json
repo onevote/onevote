@@ -6,6 +6,10 @@
     "build": "next build",
     "start": "NODE_ENV=production npx sequelize db:migrate && node server.js"
   },
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  },
   "license": "MIT",
   "dependencies": {
     "@hackclub/design-system": "^0.0.1-10",
