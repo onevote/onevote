@@ -46,7 +46,13 @@ export default class extends Component {
             here to help.
           </Text>
           <Search />
-          {/* <Map address="576 Natoma St., San Francisco, CA 94103" /> */}
+          {/* <Map
+            address="576 Natoma St., San Francisco, CA 94103"
+            markers={[
+              { address: 'San Diego, CA' },
+              { address: 'UPenn', label: 'PENNAPPS MY BOIS' }
+            ]}
+          /> */}
         </Container>
         <Footer />
       </Fragment>
