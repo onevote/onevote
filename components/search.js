@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import styled from 'styled-components'
 import { trim, isEmpty, map, keys } from 'lodash'
 import axios from 'axios'
-import { Box, LargeButton, Flex, Label } from '@hackclub/design-system'
+import { Box, LargeButton, Flex, Label, Text } from '@hackclub/design-system'
+import { DropdownContainer, DropdownMenu, DropdownMenuOption } from './dropdown'
 import SearchInput from '../components/searchInput'
 import Group from './profile/group'
 import Spinner from 'respin'
@@ -57,7 +58,7 @@ class Search extends Component {
             onChange={this.handleChange}
           >
             {({ getInputProps, getSuggestionItemProps, suggestions, ...props }) => (
-              <Fragment>
+              <DropdownContainer>
                 <SearchInput
                   name="address"
                   id="address"
@@ -65,13 +66,23 @@ class Search extends Component {
                   onKeyDown={
                     e => {
                       if (e.which === 13) this.fetchData()
-                    } /* submit on enter key press */
+                    } // submit on enter key press
                   }
                   onChange={this.handleChange}
                   style={{ maxWidth: '100%' }}
-                  {...getInputProps({ ...props })}
+                  {...getInputProps(props)}
                 />
-              </Fragment>
+                <DropdownMenu>
+                  {suggestions.map(suggestion => (
+                    <DropdownMenuOption
+                      key={suggestion.id}
+                      active={suggestion.active}
+                      children={suggestion.description}
+                      {...getSuggestionItemProps(suggestion)}
+                    />
+                  ))}
+                </DropdownMenu>
+              </DropdownContainer>
             )}
           </PlacesAutocomplete>
           <LargeButton
