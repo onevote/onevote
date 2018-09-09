@@ -8,11 +8,6 @@ import { DropdownContainer, DropdownMenu, DropdownMenuOption } from './dropdown'
 import SearchInput from './searchInput'
 import { Box, Button, Flex, Label, Text } from '@hackclub/design-system'
 import Icon from '@hackclub/icons'
-<<<<<<< HEAD
-import SearchInput from '../components/searchInput'
-=======
-import Group from './profile/group'
->>>>>>> d62accb69bc5f729935f4f80ead9c7c4d43467fa
 import Spinner from 'respin'
 import Location from './location'
 import Group from './profile/group'
@@ -89,20 +84,8 @@ class Search extends Component {
           Enter your home (U.S.) address
         </Label>
         <Searcher align="flex-end" width={1}>
-<<<<<<< HEAD
-          <SearchInput
-            name="address"
-            id="address"
-            placeholder="1 Infinite Loop, Cupertino, CA"
-            onKeyDown={
-              e => {
-                if (e.which === 13) this.fetchData()
-              } // submit on enter key press
-            }
-=======
           <PlacesAutocomplete
             value={address}
->>>>>>> d62accb69bc5f729935f4f80ead9c7c4d43467fa
             onChange={this.handleChange}
           >
             {({ getInputProps, getSuggestionItemProps, suggestions, ...props }) => (
@@ -146,7 +129,7 @@ class Search extends Component {
         {pollingLocations
           ? pollingLocations.map(location => (
               <Location
-                data={location}
+                address={location}
                 key={`polling-${location.locationName}`}
               />
             ))

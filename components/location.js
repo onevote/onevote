@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import theme from '../theme/config'
 import { Avatar, Heading, Text, Box, Flex } from '@hackclub/design-system'
+import Map from './map'
 
 const Base = styled(Box)`
   position: relative;
@@ -18,6 +19,7 @@ Base.defaultProps = {
 const Location = ({ address }) => (
   <Base my={4}>
     <Heading.h2>Your polling location</Heading.h2>
+    <Map address={address} />
   </Base>
 )
 
