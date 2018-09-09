@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import PlacesAutocomplete from 'react-places-autocomplete'
 import styled from 'styled-components'
 import theme from '../theme/config'
 import { trim, isEmpty, map, keys } from 'lodash'
 import axios from 'axios'
-import { Box, Button, Flex, Label } from '@hackclub/design-system'
+import { DropdownContainer, DropdownMenu, DropdownMenuOption } from './dropdown'
+import SearchInput from './searchInput'
+import { Box, Button, Flex, Label, Text } from '@hackclub/design-system'
 import Icon from '@hackclub/icons'
-import SearchInput from '../components/searchInput'
 import Group from './profile/group'
 import Spinner from 'respin'
 
@@ -42,9 +44,10 @@ class Search extends Component {
     error: null
   }
 
-  handleChange = e => {
-    const address = trim(e.target.value)
-    this.setState({ address })
+  handleChange = value => {
+    this.setState({ address: value }, () => {
+      this.fetchData()
+    })
   }
 
   fetchData() {
@@ -79,18 +82,32 @@ class Search extends Component {
           Enter your home (U.S.) address
         </Label>
         <Searcher align="flex-end" width={1}>
-          <SearchInput
-            name="address"
-            id="address"
-            placeholder="1 Infinite Loop, Cupertino, CA"
-            onKeyDown={
-              e => {
-                if (e.which === 13) this.fetchData()
-              } /* submit on enter key press */
-            }
+          <PlacesAutocomplete
+            value={address}
             onChange={this.handleChange}
-            style={{ maxWidth: '100%' }}
-          />
+          >
+            {({ getInputProps, getSuggestionItemProps, suggestions, ...props }) => (
+              <Box>
+                <SearchInput
+                  name="address"
+                  id="address"
+                  placeholder="1 Infinite Loop, Cupertino, CA"
+                  style={{ maxWidth: '100%' }}
+                  {...getInputProps(props)}
+                />
+                <Box>
+                  {suggestions.map(suggestion => (
+                    <Box
+                      key={suggestion.id}
+                      active={suggestion.active}
+                      children={suggestion.description}
+                      {...getSuggestionItemProps(suggestion)}
+                    />
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </PlacesAutocomplete>
           <SearchButton
             glyph="search"
             circle
