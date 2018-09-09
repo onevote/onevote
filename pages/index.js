@@ -3,15 +3,15 @@ import styled from 'styled-components'
 import Link from '../theme/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { Container, Box, Flex, Text, Heading } from '@hackclub/design-system'
+import { Container, Box, Text, Heading } from '@hackclub/design-system'
 import Search from '../components/search'
 
 const Highlight = styled(Text.span)`
   border-radius: 1em 0 1em 0;
   background-image: linear-gradient(
     -100deg,
-    rgba(250, 247, 133, 0.3),
-    rgba(250, 247, 133, 0.7) 95%,
+    rgba(250, 247, 133, 0.33),
+    rgba(250, 247, 133, 0.66) 95%,
     rgba(250, 247, 133, 0.1)
   );
 `
@@ -28,13 +28,11 @@ export default () => (
         turning up at the polls.{' '}
         <Highlight>Our votes are critical to the future we want.</Highlight>
       </Text>
-      <Text f={3}>
+      <Text f={3} mb={[3, 4]}>
         <Text.span bold>Know who you’re voting for, then vote.</Text.span> We’re
         here to help.
       </Text>
-      <Box mt={[3, 4]}>
-        <Search />
-      </Box>
+      <Search />
     </Container>
     <Footer />
   </Fragment>
