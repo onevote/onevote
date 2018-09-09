@@ -1,39 +1,37 @@
 import { injectGlobal } from 'styled-components'
 import { theme as base } from '@hackclub/design-system'
-import palx from 'palx'
 
 const primary = '#0069ff'
-export const palette = palx(primary)
 
 export const grays = {
-  black: palette.black,
-  slate: palette.gray[9],
-  silver: palette.gray[7],
-  smoke: palette.gray[2],
-  snow: palette.gray[0],
-  white: '#ffffff'
+  black: '#1F2D3D',
+  slate: '#3C4858',
+  silver: '#8492A6',
+  smoke: '#E0E6ED',
+  snow: '#F9FAFC',
+  white: '#FFFFFF'
 }
 
 export const brand = {
   primary,
-  accent: palette.red[5],
-  brand: palette.violet[5],
-  success: palette.teal[5],
-  info: primary,
-  warning: palette.orange[5],
-  error: palette.red[7],
-  muted: grays.silver,
-
-  dem: palette.blue[5],
-  rep: palette.red[5],
-  ind: palette.violet[5],
-  lib: palette.orange[5]
+  brand: '#592DEA',
+  success: '#13CE66',
+  info: '#1FB6FF',
+  warning: '#FF7849',
+  error: '#FF4949',
+  muted: '#8492A6'
 }
+brand.dem = brand.info
+brand.rep = brand.error
+brand.ind = brand.brand
+brand.lib = brand.warning
+
+// NOTE(@lachlanjc): fix for DS inputs
+brand.blue = ['#009EEB', '#1FB6FF', '#85D7FF']
 
 export const colors = {
   ...brand,
-  ...grays,
-  ...palette
+  ...grays
 }
 
 export const font =

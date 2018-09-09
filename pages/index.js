@@ -4,7 +4,7 @@ import Link from '../theme/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { Container, Box, Flex, Text, Heading } from '@hackclub/design-system'
-import SearchInput from '../components/searchInput'
+import Search from '../components/search'
 
 const Highlight = styled(Text.span)`
   border-radius: 1em 0 1em 0;
@@ -33,7 +33,7 @@ export default () => (
         here to help.
       </Text>
       <Box mt={[3, 4]}>
-        <SearchInput placeholder="1 Infinite Loop, Cupertino, CA" />
+        <Search />
       </Box>
     </Container>
     <Footer />
