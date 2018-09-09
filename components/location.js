@@ -18,7 +18,7 @@ Base.defaultProps = {
 
 const Location = ({ address }) => (
   <Base my={4}>
-    <Heading.h2>Your polling location</Heading.h2>
+    <Heading.h2 mb={2}>Your polling location</Heading.h2>
     <Map address={address} />
   </Base>
 )
