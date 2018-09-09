@@ -25,7 +25,12 @@ const Search = styled(Input).attrs({
   py: 2,
   pr: 3
 })`
-  background: ${theme.colors.brand} !important;
+  background-color: ${theme.colors.brand};
+  background-image: radial-gradient(
+    ellipse farthest-corner at top left,
+    #7e5bef,
+    ${theme.colors.brand}
+  ) !important;
   padding-left: 56px; // 32px icon + padding
   line-height: 48px;
   max-width: 100%;
