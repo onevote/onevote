@@ -5,7 +5,7 @@ import { trim, isEmpty, map, keys } from 'lodash'
 import axios from 'axios'
 import { Box, LargeButton, Flex, Label, Text } from '@hackclub/design-system'
 import { DropdownContainer, DropdownMenu, DropdownMenuOption } from './dropdown'
-import SearchInput from '../components/searchInput'
+import SearchInput from './searchInput'
 import Group from './profile/group'
 import Spinner from 'respin'
 
@@ -68,7 +68,6 @@ class Search extends Component {
                       if (e.which === 13) this.fetchData()
                     } // submit on enter key press
                   }
-                  onChange={this.handleChange}
                   style={{ maxWidth: '100%' }}
                   {...getInputProps(props)}
                 />
