@@ -4,10 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       address: DataTypes.STRING,
       phone_number: DataTypes.STRING,
-      candidates: {
-        type: DataTypes.ARRAY(DataTypes.JSONB),
-        defaultValue: []
-      },
       subscribed_at: {
         type: DataTypes.DATE,
         defaultValue: null
