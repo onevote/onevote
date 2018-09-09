@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import { Avatar, Heading, Text, Box, Flex } from '@hackclub/design-system'
+import { Heading, Box, LargeButton, Flex } from '@hackclub/design-system'
 import Map from './map'
 
 const Base = styled(Box)`
@@ -18,7 +18,15 @@ Base.defaultProps = {
 
 const Location = ({ address }) => (
   <Base my={4}>
-    <Heading.h2 mb={2}>Your polling location</Heading.h2>
+    <Flex mb={2} justify="space-between" wrap>
+      <Heading.h2>Your polling location</Heading.h2>
+      <LargeButton
+        bg="info"
+        href={`https://www.google.com/maps?q=${encodeURIComponent(address)}`}
+      >
+        Get Directions
+      </LargeButton>
+    </Flex>
     <Map address={address} />
   </Base>
 )
