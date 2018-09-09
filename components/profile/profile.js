@@ -35,17 +35,17 @@ const Profile = ({ data, ...props }) => (
         <Badge party={data.party} />
       </BadgeContainer>
       <Avi size={64} src={aviUrl(data.channels)} mr={3} />
-      <Box align="left">
+      <Box align="left" style={{ flex: '1 1 auto' }}>
         <Heading.h4 fontSize={4} fontWeight="bold" children={data.name} />
         <Text color="muted" fontSize={2}>
           hi
         </Text>
       </Box>
+      <Contact
+        twitter={find(data.channels, ['type', 'Twitter'])}
+        facebook={find(data.channels, ['type', 'Facebook'])}
+      />
     </Flex>
-    <Contact
-      twitter={find(data.channels, ['type', 'Twitter'])}
-      facebook={find(data.channels, ['type', 'Facebook'])}
-    />
   </Base>
 )
 
@@ -60,6 +60,7 @@ const BadgeContainer = styled(Box)`
   position: absolute;
   top: 0;
   left: 0;
+  width: 24px;
   z-index: 1;
 `
 
