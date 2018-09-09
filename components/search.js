@@ -116,17 +116,6 @@ class Search extends Component {
             onClick={e => !isEmpty(trim(address)) && this.fetchData()}
           />
         </Searcher>
-        {error && (
-          <Text
-            color="error"
-            bold
-            fontSize={3}
-            py={3}
-            width={1}
-            center
-            children={error}
-          />
-        )}
         {pollingLocations
           ? pollingLocations.map(location => (
               <Location
