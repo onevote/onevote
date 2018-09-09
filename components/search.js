@@ -122,7 +122,8 @@ class Search extends Component {
         {pollingLocations
           ? pollingLocations.map(location => (
               <Location
-                address={`${location.address.line1} ${location.address.city} ${location.address.state} ${location.address.zip}`}
+                pollingPlaceAddress={`${location.address.line1} ${location.address.city} ${location.address.state} ${location.address.zip}`}
+                userAddress={address}
                 key={`polling-${location.locationName}`}
               />
             ))

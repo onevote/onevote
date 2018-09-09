@@ -26,19 +26,16 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    const { geolocation } = window.navigator
-    if (!geolocation) {
-      alert('Geolocation is not enabled or not supported on your device.')
-      return
-    }
-    geocodeByAddress(this.props.to)
+    const { from, to } = this.props
+    geocodeByAddress(to)
       .then(results => getLatLng(results[0]))
       .then(position => {
         this.setState({ to: position })
-        geolocation.getCurrentPosition(pos => {
-          const { latitude, longitude } = pos.coords
-          this.setState({ from: { lat: latitude, lng: longitude } })
-        })
+      })
+      .then(() => geocodeByAddress(from))
+      .then(results => getLatLng(results[0]))
+      .then(position => {
+        this.setState({ from: position })
       })
   }
 
