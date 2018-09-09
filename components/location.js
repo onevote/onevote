@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import theme from '../theme/config'
 import { Avatar, Heading, Text, Box, Flex } from '@hackclub/design-system'
 import Map from './map'
+import Distance from './distance'
 
 const Base = styled(Box)`
   position: relative;
@@ -20,6 +21,7 @@ const Location = ({ address }) => (
   <Base my={4}>
     <Heading.h2 mb={2}>Your polling location</Heading.h2>
     <Text>{address}</Text>
+    <Text><Distance to={address} /> miles away</Text>
     <Map address={address} />
   </Base>
 )
