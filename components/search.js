@@ -6,8 +6,9 @@ import axios from 'axios'
 import { Box, Button, Flex, Label } from '@hackclub/design-system'
 import Icon from '@hackclub/icons'
 import SearchInput from '../components/searchInput'
-import Group from './profile/group'
 import Spinner from 'respin'
+import Location from './location'
+import Group from './profile/group'
 
 const SearchButton = styled(Button.button).attrs({
   px: 0,
@@ -38,6 +39,7 @@ class Search extends Component {
   state = {
     address: '',
     loading: false,
+    pollingLocations: [],
     contests: [],
     error: null
   }
@@ -51,19 +53,17 @@ class Search extends Component {
     const { address } = this.state
     console.log('Address', address)
     this.setState({ loading: true })
-    const payload = {
-      address
-    }
+    const payload = { address }
     const query = keys(payload)
       .map(key => map([key, payload[key]], encodeURIComponent).join('='))
       .join('&')
     const url = `/locate?${query}`
     axios
       .get(url)
-      .then(res => res.data.contests)
-      .then(contests => {
-        console.log('Res', contests)
-        this.setState({ loading: false, contests })
+      .then(res => res.data)
+      .then(data => {
+        const { pollingLocations, contests } = data
+        this.setState({ loading: false, pollingLocations, contests })
       })
       .catch(e => {
         console.error(e)
@@ -72,7 +72,7 @@ class Search extends Component {
   }
 
   render() {
-    const { loading, address, contests, error } = this.state
+    const { loading, address, pollingLocations, contests, error } = this.state
     return (
       <Box my={3}>
         <Label htmlFor="address" mb={2} fontSize={2} color="muted" caps>
@@ -86,14 +86,13 @@ class Search extends Component {
             onKeyDown={
               e => {
                 if (e.which === 13) this.fetchData()
-              } /* submit on enter key press */
+              } // submit on enter key press
             }
             onChange={this.handleChange}
             style={{ maxWidth: '100%' }}
           />
           <SearchButton
-            glyph="search"
-            circle
+            loading={loading}
             onClick={e => !isEmpty(trim(address)) && this.fetchData()}
           />
         </Searcher>
@@ -103,10 +102,19 @@ class Search extends Component {
             bold
             fontSize={3}
             py={3}
+            width={1}
             center
             children={error}
           />
         )}
+        {pollingLocations
+          ? pollingLocations.map(location => (
+              <Location
+                data={location}
+                key={`polling-${location.locationName}`}
+              />
+            ))
+          : null}
         {contests.map(group => (
           <Group
             profiles={group.candidates}
