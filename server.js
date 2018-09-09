@@ -3,6 +3,7 @@ const express = require('express')
 const next = require('next')
 const scrapeIt = require('scrape-it')
 const fs = require('fs')
+const _ = require('lodash')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -24,9 +25,17 @@ app.prepare().then(() => {
           }&address=${encodeURIComponent(address)}&electionId=${req.query
             .electionId || 2000}`
         )
-        .then(response => {
-          res.json(response.data)
+        .then(res => res.data)
+        .then(data => {
+          _.map(data.contests, (contest, i) => {
+            data.contests[i].candidates = _.uniqBy(
+              contest.candidates,
+              n => n.name
+            )
+          })
+          return data
         })
+        .then(data => res.json(data))
         .catch(error => {
           res.status(500).json({ error: 'an error occurred' })
         })
