@@ -19,17 +19,23 @@ Base.defaultProps = {
 
 const Location = ({ pollingPlaceAddress, userAddress }) => (
   <Base my={4}>
-    <Flex justify="space-between" wrap mb={2} align="flex-start">
+    <Flex justify="space-between" wrap mb={3} align="flex-start">
       <Box>
-        <Heading.h2>Your polling location</Heading.h2>
+        <Heading.h2 mb={1} style={{ fontWeight: 'bold' }}>
+          Your polling location
+        </Heading.h2>
         <Text>{pollingPlaceAddress}</Text>
-        <Text><Distance to={pollingPlaceAddress} from={userAddress} /> miles away</Text>
+        <Text color="muted">
+          <Distance to={pollingPlaceAddress} from={userAddress} /> miles away
+        </Text>
       </Box>
       <LargeButton
         bg="info"
         target="_blank"
         rel="noopener noreferral"
-        href={`https://www.google.com/maps?q=${encodeURIComponent(pollingPlaceAddress)}`}
+        href={`https://www.google.com/maps?q=${encodeURIComponent(
+          pollingPlaceAddress
+        )}`}
       >
         Get Directions
       </LargeButton>
