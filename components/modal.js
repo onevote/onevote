@@ -75,7 +75,7 @@ const ButtonReset = styled(Box.withComponent('button')).attrs({
   appearance: none;
   background: transparent;
   border: 0;
-  border-radius: ${({ theme }) => theme.pill};
+  border-radius: ${theme.pill};
   cursor: pointer;
 `
 export const CloseButton = props => (
