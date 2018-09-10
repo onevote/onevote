@@ -100,7 +100,7 @@ class Search extends Component {
                   placeholder="1 Infinite Loop, Cupertino, CA"
                   {...getInputProps(props)}
                 />
-                {suggestions.length > 1 ? (
+                {suggestions.length > 1 && (
                   <DropdownMenu>
                     {suggestions.map(suggestion => (
                       <DropdownMenuOption
@@ -111,7 +111,7 @@ class Search extends Component {
                       />
                     ))}
                   </DropdownMenu>
-                ) : null}
+                )}
               </DropdownContainer>
             )}
           </PlacesAutocomplete>
@@ -123,7 +123,9 @@ class Search extends Component {
         {pollingLocations
           ? pollingLocations.map(location => (
               <Location
-                pollingPlaceAddress={`${location.address.line1} ${location.address.city} ${location.address.state} ${location.address.zip}`}
+                pollingPlaceAddress={`${location.address.line1} ${
+                  location.address.city
+                } ${location.address.state} ${location.address.zip}`}
                 userAddress={address}
                 key={`polling-${location.locationName}`}
               />
