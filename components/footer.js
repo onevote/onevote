@@ -5,7 +5,7 @@ import { Flex, Container } from '@hackclub/design-system'
 const Base = Container.withComponent(Flex)
 
 export default () => (
-  <Base justify="space-between" wrap width={1} maxWidth={48} px={3} pb={5}>
+  <Base justify="space-between" wrap width={1} maxWidth={48} px={3} pb={4}>
     <Link
       color="muted"
       href="http://devpost.com/software/onevote"
