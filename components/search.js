@@ -19,7 +19,7 @@ const SearchButton = styled(Button.button).attrs({
   py: 0,
   ml: 3,
   children: props =>
-    props.loading ? <Spinner /> : <Icon glyph="search" size={48} />
+    props.loading ? <Spinner size={24} /> : <Icon glyph="search" size={48} />
 })`
   flex-shrink: 0;
   line-height: 0 !important;
