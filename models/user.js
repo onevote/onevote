@@ -4,10 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       address: DataTypes.STRING,
       phone_number: DataTypes.STRING,
-      candidates: {
-        type: DataTypes.ARRAY(DataTypes.JSONB),
-        defaultValue: []
-      },
       subscribed_at: {
         type: DataTypes.DATE,
         defaultValue: null
@@ -18,6 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true
     }
   )
+  User.associate = models => {
+    User.belongsToMany(models.Candidate, {
+      through: models.CandidateSelection,
+      foreignKey: {
+        name: 'user_id',
+        allowNull: false
+      },
+      as: 'users'
+    })
+  }
 
   return User
 }

@@ -1,12 +1,12 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.addColumn(
+    return queryInterface.addColumn(
       'users',
       'candidates',
       Sequelize.ARRAY(Sequelize.JSONB)
     )
   },
   down: (queryInterface, Sequelize) => {
-    queryInterface.removeColumn('users', 'candidates')
+    return queryInterface.removeColumn('users', 'candidates')
   }
 }
