@@ -15,10 +15,12 @@ export default class GroupInfo extends Component {
 
   render() {
     const { groupName } = this.props
-    const value =
-      groupDescriptions[
-        find(keys(groupDescriptions), o => includes(o, groupName.toLowerCase()))
-      ]
+    const value = get(
+      descriptions,
+      find(keys(descriptions), o =>
+        includes(o.toLowerCase(), groupName.toLowerCase())
+      )
+    )
     return (
       <>
         {value && (

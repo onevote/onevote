@@ -59,7 +59,7 @@ export default class extends Component {
         </Head>
         <Header />
         <Container width={1} maxWidth={48} px={3} pb={4}>
-          <Heading.h1 f={[5, 6]}>
+          <Heading.h1 f={[5, 6]} regular>
             Your vote counts. <Text.span bold>Cast it.</Text.span>
           </Heading.h1>
           <Text f={3} mt={2} mb={2}>

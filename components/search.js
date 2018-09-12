@@ -1,24 +1,28 @@
 import React, { Component } from 'react'
-import PlacesAutocomplete from 'react-places-autocomplete'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import { trim, isEmpty, map, keys, debounce } from 'lodash'
 import axios from 'axios'
+import { trim, isEmpty, keys, debounce, startCase, lowerCase } from 'lodash'
 import { DropdownContainer, DropdownMenu, DropdownMenuOption } from './dropdown'
-import SearchInput from './searchInput'
-import { Box, Button, Flex, Label, Text } from '@hackclub/design-system'
+import { Box, Button, Flex, Label } from '@hackclub/design-system'
 import Icon from '@hackclub/icons'
 import Spinner from 'respin'
+import SearchInput from './searchInput'
+import PlacesAutocomplete from 'react-places-autocomplete'
 import Location from './location'
 import Group from './profile/group'
 import PhoneSignup from './phoneSignup'
+import VoteSignup from './voteSignup'
+
+const formatAddress = address => `${startCase(lowerCase(address.line1))},
+${startCase(lowerCase(address.city))}, ${address.state} ${address.zip}`
 
 const SearchButton = styled(Button.button).attrs({
   px: 0,
   py: 0,
   ml: 3,
   children: props =>
-    props.loading ? <Spinner /> : <Icon glyph="search" size={48} />
+    props.loading ? <Spinner size={24} /> : <Icon glyph="search" size={48} />
 })`
   flex-shrink: 0;
   line-height: 0 !important;
@@ -61,7 +65,7 @@ class Search extends Component {
     this.setState({ loading: true })
     const payload = { address }
     const query = keys(payload)
-      .map(key => map([key, payload[key]], encodeURIComponent).join('='))
+      .map(key => [key, payload[key]].map(encodeURIComponent).join('='))
       .join('&')
     const url = `/locate?${query}`
     axios
@@ -99,7 +103,7 @@ class Search extends Component {
                   placeholder="1 Infinite Loop, Cupertino, CA"
                   {...getInputProps(props)}
                 />
-                {suggestions.length > 1 ? (
+                {suggestions.length > 1 && (
                   <DropdownMenu>
                     {suggestions.map(suggestion => (
                       <DropdownMenuOption
@@ -110,7 +114,7 @@ class Search extends Component {
                       />
                     ))}
                   </DropdownMenu>
-                ) : null}
+                )}
               </DropdownContainer>
             )}
           </PlacesAutocomplete>
@@ -119,15 +123,13 @@ class Search extends Component {
             onClick={e => !isEmpty(trim(address)) && this.fetchData()}
           />
         </Searcher>
-        {pollingLocations
-          ? pollingLocations.map(location => (
-              <Location
-                pollingPlaceAddress={`${location.address.line1} ${location.address.city} ${location.address.state} ${location.address.zip}`}
-                userAddress={address}
-                key={`polling-${location.locationName}`}
-              />
-            ))
-          : null}
+        {pollingLocations.map(location => (
+          <Location
+            pollingPlaceAddress={formatAddress(location.address)}
+            userAddress={address}
+            key={`polling-${location.locationName}`}
+          />
+        ))}
         {contests.map(group => (
           <Group
             profiles={group.candidates}
@@ -137,6 +139,7 @@ class Search extends Component {
           />
         ))}
         <PhoneSignup />
+        <VoteSignup />
       </Box>
     )
   }

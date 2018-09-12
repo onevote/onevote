@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
+// NOTE(@ifvictr): https://www.geodatasource.com/developers/javascript
 const distance = (lat1, lon1, lat2, lon2) => {
-  // https://www.geodatasource.com/developers/javascript
   const radlat1 = (Math.PI * lat1) / 180
   const radlat2 = (Math.PI * lat2) / 180
   const theta = lon1 - lon2
@@ -15,7 +15,7 @@ const distance = (lat1, lon1, lat2, lon2) => {
   dist = dist * 60 * 1.1515
   return {
     miles: dist,
-    kilometers: dist * 1.609344,
+    kilometers: dist * 1.609344
   }
 }
 
@@ -29,14 +29,10 @@ export default class extends Component {
     const { from, to } = this.props
     geocodeByAddress(to)
       .then(results => getLatLng(results[0]))
-      .then(position => {
-        this.setState({ to: position })
-      })
+      .then(to => this.setState({ to }))
       .then(() => geocodeByAddress(from))
       .then(results => getLatLng(results[0]))
-      .then(position => {
-        this.setState({ from: position })
-      })
+      .then(from => this.setState({ from }))
   }
 
   render() {
