@@ -72,7 +72,7 @@ class Search extends Component {
       .get(url)
       .then(res => res.data)
       .then(data => {
-        const { pollingLocations, contests } = data
+        const { pollingLocations = [], contests } = data // `pollingLocations` isn't present in some results
         this.setState({ loading: false, pollingLocations, contests })
       })
       .catch(e => {
