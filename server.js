@@ -5,7 +5,7 @@ const scrapeIt = require('scrape-it')
 const fs = require('fs')
 const _ = require('lodash')
 
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = process.env.PORT || 5000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
