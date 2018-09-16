@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Modal, CloseButton, Overlay } from '../modal'
-import { keys, find, includes } from 'lodash'
+import { get, keys, find, includes } from 'lodash'
 import { Heading, Text, Link } from '@hackclub/design-system'
 import groupDescriptions from '../../lib/group-descriptions.json'
 
