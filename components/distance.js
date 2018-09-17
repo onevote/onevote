@@ -19,7 +19,7 @@ const distance = (lat1, lon1, lat2, lon2) => {
   }
 }
 
-export default class extends Component {
+class Distance extends Component {
   state = {
     from: { lat: 0, lng: 0 },
     to: { lat: 0, lng: 0 }
@@ -27,12 +27,25 @@ export default class extends Component {
 
   componentDidMount() {
     const { from, to } = this.props
-    geocodeByAddress(to)
-      .then(results => getLatLng(results[0]))
-      .then(to => this.setState({ to }))
-      .then(() => geocodeByAddress(from))
-      .then(results => getLatLng(results[0]))
-      .then(from => this.setState({ from }))
+    Promise.all([geocodeByAddress(from), geocodeByAddress(to)])
+      .then(results => Promise.all(results.map(result => getLatLng(result[0]))))
+      .then(([from, to]) => {
+        this.setState({ from, to })
+      })
+  }
+
+  componentDidUpdate(prevProps) {
+    const { from, to } = this.props
+    if (from !== prevProps.from) {
+      geocodeByAddress(from)
+        .then(results => getLatLng(results[0]))
+        .then(from => this.setState({ from }))
+    }
+    if (to !== prevProps.to) {
+      geocodeByAddress(to)
+        .then(results => getLatLng(results[0]))
+        .then(to => this.setState({ to }))
+    }
   }
 
   render() {
@@ -40,3 +53,5 @@ export default class extends Component {
     return distance(from.lat, from.lng, to.lat, to.lng).miles.toFixed(1)
   }
 }
+
+export default Distance
