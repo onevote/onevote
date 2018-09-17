@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import { Heading, Box, Field, LargeButton } from '@hackclub/design-system'
+import { Heading, Box, LargeButton } from '@hackclub/design-system'
 
 const Base = styled(Box)`
   position: relative;
@@ -15,12 +15,12 @@ Base.defaultProps = {
   mx: [-3, -4]
 }
 
-const VoteSignup = ({ address }) => (
+const VoteSignup = () => (
   <Base my={4}>
     <Heading.h2 mb={2} style={{ fontWeight: 'bold' }}>
       Not sure if you’re registered to vote?
     </Heading.h2>
-    <LargeButton href="https://www.vote.org/register-to-vote/" bg={theme.colors.info}>Register at Vote.org</LargeButton>
+    <LargeButton href="https://www.vote.org/register-to-vote/" bg="info">Register at Vote.org</LargeButton>
   </Base>
 )
 
