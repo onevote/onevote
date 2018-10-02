@@ -1,12 +1,12 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('users', 'wants_notifications')
+    return queryInterface.removeColumn('users', 'candidates')
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.addColumn(
       'users',
-      'wants_notifications',
-      Sequelize.BOOLEAN
+      'candidates',
+      Sequelize.ARRAY(Sequelize.JSONB)
     )
   }
 }

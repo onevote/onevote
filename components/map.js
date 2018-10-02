@@ -30,6 +30,16 @@ class InnerMap extends Component {
       })
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.address !== prevProps.address) {
+      geocodeByAddress(this.props.address)
+        .then(results => getLatLng(results[0]))
+        .then(position => {
+          this.setState({ position })
+        })
+    }
+  }
+
   render() {
     const { position, markers } = this.state
     return (

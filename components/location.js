@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import { Avatar, Heading, Text, Box, Flex } from '@hackclub/design-system'
+import { Heading, Box, LargeButton, Flex, Text } from '@hackclub/design-system'
 import Map from './map'
+import Distance from './distance'
 
 const Base = styled(Box)`
   position: relative;
@@ -16,10 +17,30 @@ Base.defaultProps = {
   mx: [-3, -4]
 }
 
-const Location = ({ address }) => (
+const Location = ({ pollingPlaceAddress, userAddress }) => (
   <Base my={4}>
-    <Heading.h2 mb={2}>Your polling location</Heading.h2>
-    <Map address={address} />
+    <Flex justify="space-between" wrap mb={3} align="flex-start">
+      <Box>
+        <Heading.h2 mb={1} style={{ fontWeight: 'bold' }}>
+          Your polling location
+        </Heading.h2>
+        <Text>{pollingPlaceAddress}</Text>
+        <Text color="muted">
+          <Distance to={pollingPlaceAddress} from={userAddress} /> miles away
+        </Text>
+      </Box>
+      <LargeButton
+        bg="info"
+        target="_blank"
+        rel="noopener noreferral"
+        href={`https://www.google.com/maps?q=${encodeURIComponent(
+          pollingPlaceAddress
+        )}`}
+      >
+        Get Directions
+      </LargeButton>
+    </Flex>
+    <Map address={pollingPlaceAddress} />
   </Base>
 )
 

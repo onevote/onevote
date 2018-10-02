@@ -15,7 +15,7 @@ Base.defaultProps = {
   mx: [-3, -4]
 }
 
-const Location = ({ address }) => (
+const PhoneSignup = () => (
   <Base my={4}>
     <Heading.h2 mb={3} style={{ fontWeight: 'bold' }}>
       Get reminded before the election
@@ -27,7 +27,7 @@ const Location = ({ address }) => (
         name="phone"
         mb={3}
       />
-      <LargeButton bg={theme.colors.brand}>Sign up</LargeButton>
+      <LargeButton bg="brand">Sign up</LargeButton>
     </form>
     <Text mt={3} fontSize={1} color={theme.colors.muted}>
       We'll never share or sell your data.
@@ -35,4 +35,4 @@ const Location = ({ address }) => (
   </Base>
 )
 
-export default Location
+export default PhoneSignup

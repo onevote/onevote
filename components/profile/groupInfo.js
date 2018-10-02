@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { Modal, CloseButton, Overlay } from '../modal'
-import { keys, find, includes } from 'lodash'
+import { get, keys, find, includes } from 'lodash'
 import { Heading, Text, Link } from '@hackclub/design-system'
-import groupDescriptions from '../../lib/group-descriptions.json'
+import descriptions from '../../lib/group-descriptions.json'
 
 export default class GroupInfo extends Component {
   state = {
@@ -15,10 +15,12 @@ export default class GroupInfo extends Component {
 
   render() {
     const { groupName } = this.props
-    const value =
-      groupDescriptions[
-        find(keys(groupDescriptions), o => includes(o, groupName.toLowerCase()))
-      ]
+    const value = get(
+      descriptions,
+      find(keys(descriptions), o =>
+        includes(o.toLowerCase(), groupName.toLowerCase())
+      )
+    )
     return (
       <>
         {value && (

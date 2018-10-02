@@ -33,7 +33,7 @@ const Group = ({ profiles, label, children }) =>
       </Flex>
       <Grid mx={[null, 3, -4, -6]} mt={3}>
         {profiles.map(profile => (
-          <Profile mt={2} mb={3} data={profile} key={profile.name.last} />
+          <Profile mt={2} mb={3} data={profile} key={profile.name} />
         ))}
       </Grid>
     </Fragment>
