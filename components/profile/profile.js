@@ -8,32 +8,20 @@ import getAvi from 'getavi'
 import axios from 'axios'
 
 const PARTIES = 'Republican' | 'Democrat' | 'Independent'
+const PLACEHOLDER_IMAGE =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1024px-Placeholder_no_text.svg.png'
 const getYear = date => date.slice(0, 4)
-const aviUrl = data =>
-  getAvi(
-    get(
-      find(data, ['type', 'Facebook']) || find(data, ['type', 'Twitter']),
-      'id'
-    )
-  )
-
+const aviUrl = data => getAvi(get(find(data, ['type', 'Facebook']), 'id'))
 const getAviFromVS = name =>
   axios
     .get(`https://votesmart.org/x/search?s=${encodeURIComponent(name)}`)
     .then(res => res.data)
-    .then(data => data.results[0].photo)
+    .then(data => {
+      try {
+        return data.results[0].photo
+      } catch (err) {}
+    })
     .catch(err => console.error(err))
-
-const getAvatar = data => {
-  const avatar = aviUrl(data.channels)
-  if (avatar) return avatar
-
-  getAviFromVS(data.name).then(image => {
-    if (image) return image
-  })
-
-  return 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1024px-Placeholder_no_text.svg.png'
-}
 
 const Base = styled(Box)`
   position: relative;
@@ -47,30 +35,58 @@ Base.defaultProps = {
   mx: [-3, -4]
 }
 
-const Profile = ({ data, ...props }) => (
-  <Base {...props}>
-    <Flex align="center" style={{ position: 'relative' }}>
-      <BadgeContainer>
-        <Badge party={data.party} />
-      </BadgeContainer>
-      <Avi size={64} src={getAvatar(data)} mr={3} />
-      <Box align="left" style={{ flex: '1 1 auto' }}>
-        <Heading.h4 fontSize={4} fontWeight="bold" children={data.name} />
-      </Box>
-      <Contact
-        website={data.candidateUrl ? data.candidateUrl : null}
-        twitter={find(data.channels, ['type', 'Twitter'])}
-        facebook={find(data.channels, ['type', 'Facebook'])}
-      />
-    </Flex>
-  </Base>
-)
+class Profile extends React.Component {
+  state = {
+    avatar: null
+  }
+
+  componentDidMount() {
+    const avatar = aviUrl(this.props.data.channels)
+    if (avatar) {
+      this.setState({ avatar })
+    } else {
+      getAviFromVS(this.props.data.name)
+        .then(image => {
+          if (!image) image = PLACEHOLDER_IMAGE
+          this.setState({ avatar: image })
+        })
+        .catch(err => {
+          this.setState({ avatar: PLACEHOLDER_IMAGE })
+        })
+    }
+  }
+
+  render() {
+    const { data, ...props } = this.props
+    const { avatar } = this.state
+
+    return (
+      <Base {...props}>
+        <Flex align="center" style={{ position: 'relative' }}>
+          <BadgeContainer>
+            <Badge party={data.party} />
+          </BadgeContainer>
+          <Avi size={64} src={avatar ? avatar : '/static/loading.svg'} mr={3} />
+          <Box align="left" style={{ flex: '1 1 auto' }}>
+            <Heading.h4 fontSize={4} fontWeight="bold" children={data.name} />
+          </Box>
+          <Contact
+            website={data.candidateUrl ? data.candidateUrl : null}
+            twitter={find(data.channels, ['type', 'Twitter'])}
+            facebook={find(data.channels, ['type', 'Facebook'])}
+          />
+        </Flex>
+      </Base>
+    )
+  }
+}
 
 const Avi = styled(Avatar)`
   object-fit: cover;
   object-position: center;
   flex-shrink: 0;
   position: relative;
+  background-image: ${PLACEHOLDER_IMAGE};
 `
 
 const BadgeContainer = styled(Box)`
