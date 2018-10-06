@@ -86,7 +86,7 @@ const Avi = styled(Avatar)`
   object-position: center;
   flex-shrink: 0;
   position: relative;
-  background-image: ${PLACEHOLDER_IMAGE};
+  background-image: url(${PLACEHOLDER_IMAGE});
 `
 
 const BadgeContainer = styled(Box)`
