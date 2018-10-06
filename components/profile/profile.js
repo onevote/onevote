@@ -71,6 +71,7 @@ class Profile extends React.Component {
             <Heading.h4 fontSize={4} fontWeight="bold" children={data.name} />
           </Box>
           <Contact
+            website={data.candidateUrl ? data.candidateUrl : null}
             twitter={find(data.channels, ['type', 'Twitter'])}
             facebook={find(data.channels, ['type', 'Facebook'])}
           />

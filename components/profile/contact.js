@@ -8,10 +8,27 @@ const Base = styled(Flex)`
   line-height: 0;
 `
 
-const Contact = ({ twitter, facebook, ...props }) => (
+const Contact = ({ twitter, facebook, website, ...props }) => (
   <Base align="center" {...props}>
-    {twitter && <Twitter data={twitter.id} />}
-    {facebook && <Facebook data={facebook.id} />}
+    {website && (
+      <SocialIcon url={website} label="Website" icon="link" color="#8492A6" />
+    )}
+    {twitter && (
+      <SocialIcon
+        url={twitter.id}
+        label="Twitter"
+        icon="twitter"
+        color="#1da1f2"
+      />
+    )}
+    {facebook && (
+      <SocialIcon
+        url={facebook.id}
+        label="Facebook"
+        icon="facebook"
+        color="#3b5998"
+      />
+    )}
   </Base>
 )
 
@@ -24,15 +41,15 @@ const ItemLink = styled(Link).attrs({ mx: [1, 2] })`
 `
 
 const Item = ({ href, label, icon, ...props }) => (
-  <ItemLink href={href} target="_blank" title={label} {...props}>
+  <ItemLink
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    title={label}
+    {...props}
+  >
     <Icon glyph={icon} size={32} />
   </ItemLink>
 )
 
-const Twitter = ({ data }) => (
-  <Item href={data} label="Twitter" icon="twitter" color="#1da1f2" />
-)
-
-const Facebook = ({ data }) => (
-  <Item href={data} label="Facebook" icon="facebook" color="#3b5998" />
-)
+const SocialIcon = ({ url, ...props }) => <Item href={url} {...props} />
