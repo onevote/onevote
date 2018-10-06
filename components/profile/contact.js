@@ -8,8 +8,11 @@ const Base = styled(Flex)`
   line-height: 0;
 `
 
-const Contact = ({ twitter, facebook, ...props }) => (
+const Contact = ({ twitter, facebook, website, ...props }) => (
   <Base align="center" {...props}>
+    {website && (
+      <SocialIcon url={website} label="Website" icon="link" color="#000" />
+    )}
     {twitter && (
       <SocialIcon
         url={twitter.id}
