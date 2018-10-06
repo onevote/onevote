@@ -11,7 +11,7 @@ const Base = styled(Flex)`
 const Contact = ({ twitter, facebook, website, ...props }) => (
   <Base align="center" {...props}>
     {website && (
-      <SocialIcon url={website} label="Website" icon="link" color="#000" />
+      <SocialIcon url={website} label="Website" icon="link" color="#8492A6" />
     )}
     {twitter && (
       <SocialIcon
