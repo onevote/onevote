@@ -2,7 +2,6 @@ const axios = require('axios')
 const express = require('express')
 const next = require('next')
 const scrapeIt = require('scrape-it')
-const fs = require('fs')
 const _ = require('lodash')
 
 const port = process.env.PORT || 5000
