@@ -27,7 +27,7 @@ const PhoneSignup = () => (
         name="phone"
         mb={3}
       />
-      <LargeButton bg="brand">Sign up</LargeButton>
+      <LargeButton bg={theme.colors.brand}>Sign up</LargeButton>
     </form>
     <Text mt={3} fontSize={1} color={theme.colors.muted}>
       We’ll never share or sell your data.

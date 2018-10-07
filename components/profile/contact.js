@@ -40,6 +40,7 @@ const Contact = ({ twitter, facebook, website, ...props }) => (
 export default Contact
 
 const ItemLink = styled(Link).attrs({ mx: [1, 2] })`
+  cursor: pointer;
   display: inline-block;
   flex-shrink: 0;
   line-height: 0;

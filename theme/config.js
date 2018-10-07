@@ -29,6 +29,7 @@ brand.lib = brand.warning // libertarian
 brand.gre = brand.success // green
 brand.sap = brand.muted // sapient
 brand.con = brand.warning // consitution
+brand.ref = brand.warning // reform
 
 // NOTE(@lachlanjc): fix for DS inputs
 brand.blue = ['#009EEB', '#1FB6FF', '#85D7FF']
