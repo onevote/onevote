@@ -44,19 +44,9 @@ export default class extends Document {
     return (
       <html>
         <Head>
+          <html lang="en" />
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width,initial-scale=1" />
-          <title children={title} />
-          {meta([
-            { name: 'description', content: description },
-            { name: 'twitter:card', content: 'summary' },
-            { name: 'twitter:description', content: description },
-            { name: 'twitter:title', content: title },
-            { name: 'twitter:image:src', content: img },
-            { property: 'og:title', content: title },
-            { property: 'og:description', content: description },
-            { property: 'og:image', content: img }
-          ])}
           {this.props.styleTags}
         </Head>
         <body>
