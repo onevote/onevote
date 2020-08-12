@@ -4,7 +4,7 @@ import { Flex, Container } from '@hackclub/design-system'
 
 const Base = Container.withComponent(Flex)
 
-export default () => (
+const Footer = () => (
   <Base justify="space-between" wrap width={1} maxWidth={48} px={3} pb={4}>
     <Link
       color="muted"
@@ -13,8 +13,10 @@ export default () => (
     >
       Made at PennApps XVIII
     </Link>
-    <Link color="muted" href="https://github.com/lachlanjc/onevote">
+    <Link color="muted" href="https://github.com/onevote/onevote">
       Open source with ❤
     </Link>
   </Base>
 )
+
+export default Footer

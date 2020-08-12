@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import theme from '../theme/config'
-import axios from 'axios'
 import { trim, isEmpty, keys, debounce, startCase, lowerCase } from 'lodash'
 import { DropdownContainer, DropdownMenu, DropdownMenuOption } from './dropdown'
 import { Box, Button, Flex, Label } from '@hackclub/design-system'
@@ -67,11 +66,12 @@ class Search extends Component {
     const query = keys(payload)
       .map(key => [key, payload[key]].map(encodeURIComponent).join('='))
       .join('&')
-    const url = `/locate?${query}`
-    axios
-      .get(url)
-      .then(res => res.data)
+    const url = `/api/locate?${query}`
+    fetch(url)
+      .then(res => res.json())
       .then(data => {
+        if (data.error) return
+        console.log(data)
         const { pollingLocations = [], contests } = data // `pollingLocations` isn't present in some results
         this.setState({ loading: false, pollingLocations, contests })
       })
@@ -134,8 +134,9 @@ class Search extends Component {
           <Group
             profiles={group.candidates}
             label={group.office}
-            key={`group-${group.district.id}-${group.office ||
-              group.referendumTitle}`}
+            key={`group-${group.district.id}-${
+              group.office || group.referendumTitle
+            }`}
           />
         ))}
         <PhoneSignup />

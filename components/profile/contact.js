@@ -14,7 +14,7 @@ const Contact = ({ twitter, facebook, website, ...props }) => (
       <SocialIcon
         url={website}
         label="Website"
-        icon="link"
+        icon="web"
         color={theme.colors.muted}
       />
     )}

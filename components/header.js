@@ -22,7 +22,7 @@ const twitterURL = (text, url) =>
     .join('%20')}&url=${url}`
 const facebookURL = url => `https://www.facebook.com/sharer/sharer.php?u=${url}`
 
-export default () => (
+const Header = () => (
   <Base justify="space-between" wrap width={1} maxWidth={48} px={3} py={[3, 4]}>
     <Link color={theme.colors.brand} href="/" prefetch fontSize={3} bold>
       OneVote
@@ -37,3 +37,5 @@ export default () => (
     </div>
   </Base>
 )
+
+export default Header

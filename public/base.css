@@ -50,7 +50,6 @@ html {
 *:after {
   box-sizing: inherit;
 }
-h1 {background:cyan !important;}
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

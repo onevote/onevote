@@ -36,8 +36,9 @@ const Location = ({ pollingPlaceAddress, userAddress }) => (
         href={`https://www.google.com/maps?q=${encodeURIComponent(
           pollingPlaceAddress
         )}`}
+        mt={1}
       >
-        Get Directions
+        Directions
       </LargeButton>
     </Flex>
     <Map address={pollingPlaceAddress} />

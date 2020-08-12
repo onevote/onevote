@@ -10,7 +10,7 @@ const Link = ({ is = 'a', href = '/', ...props }) => {
   }[is]
   return (
     <Next href={href}>
-      <Tag href={href} {...props} />
+      <Tag {...props} />
     </Next>
   )
 }

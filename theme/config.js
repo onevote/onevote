@@ -40,7 +40,7 @@ export const colors = {
 }
 
 export const font =
-  'GT-America,"Avenir Next","Segoe UI",Roboto,"Helvetica Neue",sans-serif'
+  'GT-America,ui-rounded,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif'
 
 const theme = {
   ...base,
@@ -51,76 +51,13 @@ const theme = {
 export default theme
 
 injectGlobal`
-  @font-face {
-    src: url('/static/gt-america-ultralight.woff') format('woff');
-    font-family: GT-America;
-    font-weight: 100;
-  }
-  @font-face {
-    src: url('/static/gt-america-thin.woff') format('woff');
-    font-family: GT-America;
-    font-weight: 200;
-  }
-  @font-face {
-    src: url('/static/gt-america-light.woff') format('woff');
-    font-family: GT-America;
-    font-weight: 300;
-  }
-  @font-face {
-    src: url('/static/gt-america-regular.woff') format('woff');
-    font-family: GT-America;
-    font-weight: 400;
-  }
-  @font-face {
-    src: url('/static/gt-america-medium.woff') format('woff');
-    font-family: GT-America;
-    font-weight: 500;
-  }
-  @font-face {
-    src: url('/static/gt-america-bold.woff') format('woff');
-    font-family: GT-America;
-    font-weight: 700;
-  }
-  @font-face {
-    src: url('/static/gt-america-black.woff') format('woff');
-    font-family: GT-America;
-    font-weight: 900;
-  }
-
-  html {
-    height: 100%;
-    box-sizing: border-box;
-  }
   body {
     background-color: ${theme.colors.snow};
     font-family: ${theme.font};
     font-size: ${theme.fontSizes[2]}px;
   }
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
-  a {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  }
   ::selection {
     background-color: ${primary};
     color: ${theme.colors.white};
-  }
-  .prevent-scroll {
-    overflow: hidden;
-  }
-  #nprogress {
-    pointer-events: none;
-  }
-  #nprogress .bar {
-    position: fixed;
-    z-index: 2000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: ${primary};
   }
 `

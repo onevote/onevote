@@ -1,61 +1,43 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import ThemeProvider from '../theme'
-import NProgress from 'nprogress'
-import { debounce } from 'lodash'
-import RouterEvents from '../lib/router-events'
 
-const start = debounce(NProgress.start, 200)
-RouterEvents.on('routeChangeStart', start)
-RouterEvents.on('routeChangeComplete', () => {
-  start.cancel()
-  NProgress.done()
-})
-RouterEvents.on('routeChangeError', () => {
-  start.cancel()
-  NProgress.done()
-})
-
-const meta = tags =>
-  tags.map((m, i) => {
-    m.key = i
-    return React.createElement('meta', m, null)
-  })
-
-const title = 'OneVote'
-const description = 'Work in progress'
-const img = '/static/card.png'
-
-export default class extends Document {
-  static getInitialProps({ renderPage }) {
+class MyDocument extends Document {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet()
-    const page = renderPage(App => props =>
-      sheet.collectStyles(
-        <ThemeProvider>
-          <App {...props} />
-        </ThemeProvider>
+
+    const originalRenderPage = ctx.renderPage
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+      })
+
+    const initialProps = await Document.getInitialProps(ctx)
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          {sheet.getStyleElement()}
+        </>
       )
-    )
-    const styleTags = sheet.getStyleElement()
-    return { ...page, styleTags }
+    }
   }
 
   render() {
     return (
-      <html>
+      <Html>
         <Head>
-          <html lang="en" />
-          <meta charSet="UTF-8" />
-          <meta name="viewport" content="width=device-width,initial-scale=1" />
-          {this.props.styleTags}
+          <script
+            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=geometry,drawing,places`}
+          />
         </Head>
         <body>
-          <ThemeProvider>
-            <Main />
-          </ThemeProvider>
+          <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }
+
+export default MyDocument

@@ -5,16 +5,13 @@ import { Avatar, Heading, Box, Flex } from '@hackclub/design-system'
 import Contact from './contact'
 import { get, find, lowerCase } from 'lodash'
 import getAvi from 'getavi'
-import axios from 'axios'
 
-const PARTIES = 'Republican' | 'Democrat' | 'Independent'
 const PLACEHOLDER_IMAGE =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1024px-Placeholder_no_text.svg.png'
 const aviUrl = data => getAvi(get(find(data, ['type', 'Facebook']), 'id'))
 const getAviFromVS = name =>
-  axios
-    .get(`https://votesmart.org/x/search?s=${encodeURIComponent(name)}`)
-    .then(res => res.data)
+  fetch(`https://votesmart.org/x/search?s=${encodeURIComponent(name)}`)
+    .then(res => res.json())
     .then(data => {
       try {
         return data.results[0].photo

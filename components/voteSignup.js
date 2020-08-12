@@ -30,13 +30,14 @@ class VoteSignup extends Component {
     const { active } = this.state
     return (
       <Base my={4}>
-        <Heading.h2 mb={2} style={{ fontWeight: 'bold' }}>
+        <Heading.h2 mb={3} style={{ fontWeight: 'bold' }}>
           Not sure if you’re registered to vote?
         </Heading.h2>
         <LargeButton
           onClick={this.toggle}
           bg="info"
-          children={active ? 'Close' : 'Check Your Status'}
+          children={active ? 'Close' : 'Check your status'}
+          mt={2}
           mb={active ? 3 : 0}
         />
         {active && (
