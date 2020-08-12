@@ -17,7 +17,7 @@ cd onevote
 yarn && yarn run dev
 ```
 
-3. It should now be running, open [localhost:5000](http://localhost:5000) to view it
+3. It should now be running, open [localhost:3000](http://localhost:3000) to view it
 
 ## License
 
